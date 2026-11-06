@@ -1371,3 +1371,39 @@ h1 em[data-dim]::after{content:attr(data-dim);position:absolute;right:calc(100% 
 @media (max-width:640px){.pd-count{margin-left:0;width:100%}}
 @media (max-width:700px){ol.steps[style*="repeat(4"]{grid-template-columns:1fr 1fr!important}}
 @media (max-width:420px){ol.steps[style*="repeat(4"]{grid-template-columns:1fr!important}}
+
+/* No outlined / transparent text anywhere: solid fills */
+.values:not(.v3) .value::before{color:#E3EAD7;-webkit-text-stroke:0}
+.values:not(.v3) .value:hover::before{color:var(--primary);-webkit-text-stroke:0}
+.foot-hero h2 span{color:var(--lime);-webkit-text-stroke:0}
+.q-n{color:var(--primary);-webkit-text-stroke:0}
+
+/* Partner logo frames (home) */
+.lf-row{overflow:hidden;padding-block:12px 18px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.lf-track{display:flex;gap:clamp(14px,1.6vw,22px);width:max-content;animation:marq 55s linear infinite}
+.lf-row:hover .lf-track,.lf-row:focus-within .lf-track{animation-play-state:paused}
+.lf{position:relative;flex:none;width:clamp(230px,20vw,280px);display:grid;grid-template-rows:auto auto;gap:14px;padding:18px 18px 16px;background:#fff;border:1px solid var(--line);border-radius:22px;text-decoration:none;color:var(--dark);box-shadow:0 1px 2px rgba(20,40,25,.04),0 8px 22px -14px rgba(20,40,25,.18);transition:transform .3s,border-color .3s,box-shadow .3s}
+.lf::before{content:"";position:absolute;inset:8px;border-radius:16px;border:1px dashed transparent;transition:border-color .3s;pointer-events:none}
+.lf-logo{height:96px;border-radius:14px;background:var(--bg-2);display:grid;place-items:center;padding:16px 22px}
+.lf-logo img{max-width:100%;max-height:60px;width:auto;height:auto;object-fit:contain;filter:grayscale(1) contrast(1.05);opacity:.8;transition:filter .35s,opacity .35s,transform .35s}
+.lf-cap{display:grid;gap:2px;padding-right:34px}
+.lf-cap b{font-family:var(--f-head);font-size:.98rem;line-height:1.25}
+.lf-cap small{font-size:.8rem;color:var(--muted)}
+.lf-go{position:absolute;right:16px;bottom:16px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--lime);color:var(--forest);transition:transform .3s,background .3s}
+.lf-go svg{width:15px;height:15px}
+.lf:hover,.lf:focus-visible{transform:translateY(-4px);border-color:var(--primary);box-shadow:0 2px 6px rgba(20,40,25,.06),0 18px 36px -16px rgba(20,40,25,.28)}
+.lf:hover .lf-logo img,.lf:focus-visible .lf-logo img{filter:none;opacity:1;transform:scale(1.04)}
+.lf:hover .lf-go{transform:rotate(45deg);background:var(--forest);color:var(--lime)}
+.lf:focus-visible{outline:2px solid var(--forest);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.lf-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}.lf[aria-hidden]{display:none}}
+.foot-offices span{display:inline-flex;align-items:center;gap:8px}
+.foot-offices span::before{display:none}
+.foot-offices .flag{width:18px;height:13.5px;border-radius:2px;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.18);flex:none}
+
+/* Standalone section heads (heading + text + button, nothing below): balanced two columns, no trailing gap */
+.wrap>.sec-head:last-child{margin-bottom:0}
+@media (min-width:901px){
+  .sec-head:has(>a.btn)>div>h2{grid-row:2 / span 2;align-self:center}
+  .sec-head:has(>a.btn)>div>p{align-self:end}
+  .sec-head:has(>a.btn)>a.btn{align-self:start}
+}
