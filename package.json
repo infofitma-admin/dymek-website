@@ -1,0 +1,9 @@
+{
+  "name": "dymek-site",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.70.0",
+    "@netlify/functions": "^5.0.0"
+  }
+}
