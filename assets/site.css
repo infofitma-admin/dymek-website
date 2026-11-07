@@ -1558,3 +1558,24 @@ h1 em[data-dim]::after{content:attr(data-dim);position:absolute;right:calc(100% 
 .pd-head .pd-cat{display:block;margin-top:4px;letter-spacing:.06em}
 @media (max-width:600px){.p-hero .jump{justify-self:stretch;max-width:100vw;min-width:0}.p-hero-copy{min-width:0}}
 .lf-cap small.lf-was{display:inline-block;width:max-content;margin:2px 0 3px;padding:1px 8px;border-radius:999px;background:var(--bg-2);color:var(--muted);font-size:.6875rem;font-weight:600;letter-spacing:.01em}
+/* Related-link cards: branded tile instead of re-using another page's photo */
+.frame.frame-mark{display:grid;place-items:center;aspect-ratio:auto;min-height:0;background:linear-gradient(135deg,var(--acc-soft,#EAF3DE) 0%,#fff 100%);color:var(--acc,var(--primary));border-radius:14px}
+.row-link .frame.frame-mark{width:72px;height:72px;flex:none}
+.card .frame.frame-mark{height:96px}
+.frame.frame-mark svg{transition:transform .25s}
+a:hover .frame.frame-mark svg{transform:translate(3px,-3px)}
+.rows:has(.frame-mark) .row-link{grid-template-columns:72px minmax(0,1fr)}
+.post-side .rows:has(.frame-mark) .row-link,.post-side .row-link:has(.frame-mark){grid-template-columns:56px minmax(0,1fr)}
+.post-side .row-link .frame.frame-mark{width:56px;height:56px}
+/* ===== Section colour rhythm: sections alternate brand tones and flow into each other (no dividing lines) ===== */
+main>section{border-top:0!important;border-bottom:0!important}
+main>section.t-white{background:#FFFFFF!important}
+main>section.t-cream{background:#F6F8F1!important}
+main>section.t-mint{background:#EAF3DE!important}
+main>section.t-mist{background:#EEF1E9!important}
+main>section.t-forest{background:#1B2E0A!important;padding-bottom:var(--s-7)}
+main>section.t-forest+*{margin-top:0}
+.site-foot{margin-top:0}
+main>section.t-forest .sec-head h2,main>section.t-forest>.wrap>h2{color:#fff}
+/* cards on tinted sections stay crisp white */
+main>section.t-mint .card,main>section.t-cream .card,main>section.t-mist .card{background:#fff}
