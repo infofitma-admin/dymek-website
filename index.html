@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- ============ SEO: core ============ -->
+<title>Custom Route Planning &amp; Optimization Software | Dymek Southeast Asia</title>
+<meta name="description" content="Custom route planning software built around your vehicles, time windows and dispatch team. Serving Singapore, Thailand, Malaysia and Southeast Asia." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://dymek-route-planning.netlify.app/" />
+<meta name="theme-color" content="#061529" />
+<meta name="author" content="Dymek" />
+
+<!-- ============ SEO: social sharing (Facebook, LinkedIn, WhatsApp) ============ -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Dymek" />
+<meta property="og:title" content="Smarter Daily Routes, Without Rebuilding Your Operation | Dymek" />
+<meta property="og:description" content="Custom route-planning tools built around your vehicles, customers, schedules and dispatch team. Regional project coordination across Southeast Asia." />
+<meta property="og:url" content="https://dymek-route-planning.netlify.app/" />
+<meta property="og:image" content="https://dymek-route-planning.netlify.app/assets/dymek-route-planning-share.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Delivery trucks on a highway, representing optimized daily routes" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Smarter Daily Routes, Without Rebuilding Your Operation | Dymek" />
+<meta name="twitter:description" content="Custom route-planning tools built around your vehicles, customers, schedules and dispatch team." />
+<meta name="twitter:image" content="https://dymek-route-planning.netlify.app/assets/dymek-route-planning-share.jpg" />
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=satoshi@400,500,700&display=swap" />
+<link rel="preload" as="image" href="assets/delivery-trucks-hero-poster.webp" type="image/webp" />
+<link rel="stylesheet" href="styles.css" />
+
+<!-- Lets the reveal animation run only when JavaScript is on, so content is never hidden from search engines or no-JS visitors -->
+<script>document.documentElement.classList.add('js');</script>
+
+<!-- ============ SEO: structured data (helps Google understand the business and page) ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://dymek-route-planning.netlify.app/#org",
+      "name": "Dymek",
+      "legalName": "Dymek Company Ltd",
+      "url": "https://www.dymek.com",
+      "foundingDate": "1989",
+      "email": "web@dymek.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Unit B1, 18/F, TML Tower, 3 Hoi Shing Road",
+        "addressLocality": "Tsuen Wan",
+        "addressRegion": "New Territories",
+        "addressCountry": "HK"
+      },
+      "areaServed": ["Southeast Asia", "Singapore", "Thailand", "Malaysia", "Vietnam", "Philippines"],
+      "subOrganization": [
+        { "@type": "Organization", "name": "Dymek Singapore",
+          "address": { "@type": "PostalAddress", "streetAddress": "3 Ang Mo Kio St 62, #08-20 Link@AMK", "postalCode": "569139", "addressCountry": "SG" } },
+        { "@type": "Organization", "name": "Dymek Thailand",
+          "address": { "@type": "PostalAddress", "streetAddress": "89/320 Moo 1, Khlong Luang District", "addressRegion": "Pathum Thani", "postalCode": "12120", "addressCountry": "TH" } },
+        { "@type": "Organization", "name": "Dymek Malaysia",
+          "address": { "@type": "PostalAddress", "streetAddress": "Block B-6-2 Bay Avenue, Lorong Bayan Indah 3", "addressLocality": "Bayan Lepas", "addressRegion": "Penang", "postalCode": "11900", "addressCountry": "MY" } },
+        { "@type": "Organization", "name": "Dymek Vietnam",
+          "address": { "@type": "PostalAddress", "streetAddress": "Floor 2, CT1 Building, Sevin Office, 609 Truong Dinh Str, Hoang Mai Dist", "addressLocality": "Hanoi", "addressCountry": "VN" } },
+        { "@type": "Organization", "name": "Dymek Philippines",
+          "address": { "@type": "PostalAddress", "streetAddress": "Unit 1605 Richville Corporate Tower, 1107 Alabang-Zapote Road, Madrigal Business Park, Ayala-Alabang", "addressLocality": "Muntinlupa City", "postalCode": "1781", "addressCountry": "PH" } }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://dymek-route-planning.netlify.app/#webpage",
+      "url": "https://dymek-route-planning.netlify.app/",
+      "name": "Custom Route Planning & Optimization Software | Dymek Southeast Asia",
+      "description": "Custom route planning software built around your vehicles, time windows and dispatch team. Serving Singapore, Thailand, Malaysia and Southeast Asia.",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://dymek-route-planning.netlify.app/#org" }
+    },
+    {
+      "@type": "Service",
+      "name": "Custom Route Planning and Optimization",
+      "serviceType": "Delivery route optimization and dispatch planning software",
+      "provider": { "@id": "https://dymek-route-planning.netlify.app/#org" },
+      "areaServed": "Southeast Asia",
+      "audience": {
+        "@type": "BusinessAudience",
+        "audienceType": "Distributors, wholesalers, food and beverage suppliers, retail chains, 3PL and regional trucking companies"
+      },
+      "description": "A customized, interactive route-planning tool built around your vehicles, customers, delivery windows, driver shifts and operating constraints, starting from the spreadsheets your team already uses. Powered by Lynxx optimization technology, serving transportation companies for 16 years."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Do we need to replace our existing order-management system?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not necessarily. The route-planning tool can begin with the information your team already maintains, including spreadsheets and exported order lists. Any integration requirements can be discussed based on your current systems and preferred workflow." } },
+        { "@type": "Question", "name": "Do we need GPS or vehicle-tracking data?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not necessarily. GPS or telematics data may be useful for some projects, but the initial planning model can often begin with delivery locations, orders, vehicle details, operating constraints, and knowledge from your dispatch team." } },
+        { "@type": "Question", "name": "Will the tool make all decisions automatically?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Human expertise remains central. The tool is intended to support your dispatcher, not remove their control. It generates a strong initial route plan while allowing experienced staff to review and adjust the result." } },
+        { "@type": "Question", "name": "Is this the same as a standard route-planning subscription?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The objective is to create an interactive planning tool configured around your delivery operation and its specific requirements. This is most valuable when spreadsheets have become difficult to manage and generic software does not reflect the way your business works." } },
+        { "@type": "Question", "name": "Is the solution only for large fleets?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Suitability depends less on the number of vehicles than on the complexity and value of the routing problem. A business with a modest fleet may still benefit if it manages many daily stops, strict delivery windows, capacity limits, multiple vehicle types, or complicated customer requirements." } },
+        { "@type": "Question", "name": "Can the tool accommodate last-minute changes?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The specific functionality depends on the agreed project scope, but the planning approach can be designed to help your team update routes when orders, vehicles, or operating conditions change." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+
+<a class="skip" href="#overview">Skip to content</a>
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<header class="masthead" id="masthead">
+  <div class="masthead__in">
+    <a class="brand" href="#top" aria-label="Dymek home">
+      <img class="logo-img" src="assets/dymek-logo.png" alt="Dymek" height="34" onerror="this.remove()" />
+      <span class="wordmark">DYMEK</span>
+    </a>
+
+    <nav class="nav-horizontal" aria-label="Main navigation">
+      <a href="#overview">Overview</a>
+      <a href="#problem">The Problem</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#benefits">Benefits &amp; Fit</a>
+      <a href="#technology">Technology</a>
+      <a href="#contact">Contact &amp; FAQ</a>
+    </nav>
+
+    <div class="masthead__act">
+      <a class="btn btn--solid masthead__cta" href="#contact-form">Discuss Routes</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
+    <a href="#overview">Overview</a>
+    <a href="#problem">The Problem</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#benefits">Benefits &amp; Fit</a>
+    <a href="#technology">Technology</a>
+    <a href="#contact">Contact &amp; FAQ</a>
+    <a class="btn btn--solid" href="#contact-form">Discuss the routes you run</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- 1. OVERVIEW -->
+  <section class="sec sec--blue hero-video-sec" id="overview" aria-labelledby="hero-title">
+    <div class="hero-video-wrap" aria-hidden="true">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/delivery-trucks-hero-poster.webp">
+        <source src="assets/delivery-trucks-hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-overlay"></div>
+      <div class="hero-vignette"></div>
+    </div>
+
+    <div class="shell hero-content-wrap">
+      <div class="hero-video__inner">
+        <p class="badge-tag">Custom Route Planning &amp; Optimization &middot; Southeast Asia</p>
+        <h1 class="d1 r" data-d="1" id="hero-title"><span class="h1-line">Smarter Daily Delivery Routes,</span> <span class="h1-line">Without Rebuilding Your Entire Operation</span></h1>
+        <p class="lead r" data-d="2">Turn tomorrow's delivery list into practical, optimized routes based on your vehicles, customers, schedules, and operating requirements.</p>
+        <div class="hero-ctas r" data-d="3">
+          <a class="btn btn--solid btn--lg" href="#contact-form">Discuss the routes you currently run</a>
+          <a class="btn btn--ghost btn--lg" href="#how-it-works">See how it works</a>
+        </div>
+        <ul class="hero-trust r" data-d="4">
+          <li><a class="trust-card" href="#technology"><span class="trust-ico"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span><strong>Since 1989</strong><small>Working with businesses across Asia</small></span></a></li>
+          <li><a class="trust-card" href="#pipeline"><span class="trust-ico"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></span><span><strong>Your spreadsheets</strong><small>No new system needed to start</small></span></a></li>
+          <li><a class="trust-card" href="#how-it-works"><span class="trust-ico"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span><strong>You stay in control</strong><small>Dispatchers review every route</small></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. THE PROBLEM -->
+  <section class="sec sec--white" id="problem">
+    <div class="shell">
+      <div class="sechead sechead--center">
+        <h2 class="d2 r">Your Dispatcher Should Not Solve Daily Route Puzzles</h2>
+        <p class="intro r">Every morning, or every evening, someone in your business has to decide:</p>
+      </div>
+
+      <div class="spreadsheet-box r" style="margin-bottom: 2rem;">
+        <div class="spreadsheet-grid">
+          <div>
+            <h3 class="d3" style="margin-bottom: 0.5rem;">The Daily Route Planning Challenge</h3>
+            <p>If your team still plans daily deliveries using spreadsheets, printed order lists, maps, and years of experience, you are not alone.</p>
+            <p>These methods may have worked well when the business was smaller. But as the number of vehicles, customers, delivery windows, and last-minute changes grows, route planning can consume more and more of your team's time.</p>
+            <p style="margin-bottom: 0;">Dymek can help you develop a customized, interactive route-planning tool built around the way your delivery operation actually works.</p>
+          </div>
+          <div class="spreadsheet-img">
+            <img src="assets/container-yard-aerial.webp" width="1200" height="801" alt="Aerial view of a busy container yard, the kind of daily volume route planning must handle" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-cards-grid">
+        <div class="p-card r" data-d="1"><div class="p-card__num">01</div><h3>Vehicle Allocation</h3><p>Which vehicle should handle each delivery?</p></div>
+        <div class="p-card r" data-d="2"><div class="p-card__num">02</div><h3>Stop Sequencing</h3><p>In what order should the stops be made?</p></div>
+        <div class="p-card r" data-d="3"><div class="p-card__num">03</div><h3>Capacity Checks</h3><p>Can everything fit within the available vehicle capacity?</p></div>
+        <div class="p-card r" data-d="4"><div class="p-card__num">04</div><h3>Time Windows</h3><p>Which customers must be visited within a specific time window?</p></div>
+        <div class="p-card r" data-d="5"><div class="p-card__num">05</div><h3>Travel Efficiency</h3><p>How can drivers avoid unnecessary travel?</p></div>
+        <div class="p-card r" data-d="6"><div class="p-card__num">06</div><h3>Dynamic Changes</h3><p>What should change when a new order arrives or a vehicle becomes unavailable?</p></div>
+      </div>
+
+      <p class="link-row r"><a class="text-link" href="#how-it-works">See how Dymek solves these <svg class="arr" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+
+      <div class="problem-details measure center-block">
+        <p class="r">An experienced dispatcher may be able to manage this using spreadsheets and personal knowledge.</p>
+        <p class="r">But the process can become increasingly difficult as the operation grows.</p>
+        <p class="r">Planning may take hours. Routes may depend heavily on one person's experience. Small changes can require the entire plan to be rearranged. Vehicles may travel farther than necessary, while some drivers or trucks are overloaded and others are underused.</p>
+        <p class="highlight r">A customized route-planning tool helps your team consider these factors together: quickly, consistently, and with less manual effort.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- From spreadsheet to routes (blue) -->
+  <section class="sec sec--blue" id="pipeline">
+    <div class="shell">
+      <div class="pipeline-section r">
+        <div class="sechead sechead--center" style="margin-bottom: 1.5rem;">
+          <p class="badge-tag">Data Transformation Pipeline</p>
+          <h3 class="d2">From Delivery Spreadsheet to Practical Daily Routes</h3>
+          <p class="intro">The process begins with information you may already have.</p>
+        </div>
+
+        <div class="pipeline-flow-grid">
+          <div class="pipeline-card">
+            <div class="pipeline-step-num">Phase 01</div>
+            <h4>Existing Data Sources</h4>
+            <p>Start with your current operational records without requiring a complex overhaul.</p>
+            <ul class="pipeline-list">
+              <li>Customer delivery locations</li>
+              <li>Daily order fulfillment lists</li>
+              <li>Product volumes &amp; shipment sizes</li>
+            </ul>
+          </div>
+          <div class="pipeline-arrow" aria-hidden="true">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="pipeline-card">
+            <div class="pipeline-step-num">Phase 02</div>
+            <h4>Applied Constraints</h4>
+            <p>Layer in the real-world operational rules your dispatch team manages daily.</p>
+            <ul class="pipeline-list">
+              <li>Vehicle capacities &amp; fleet types</li>
+              <li>Strict customer time windows</li>
+              <li>Driver working hours &amp; shifts</li>
+            </ul>
+          </div>
+          <div class="pipeline-arrow" aria-hidden="true">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="pipeline-card">
+            <div class="pipeline-step-num">Phase 03</div>
+            <h4>Optimized Output</h4>
+            <p>Deliver clear, structured routes ready for immediate dispatch.</p>
+            <ul class="pipeline-list">
+              <li>Balanced vehicle schedules</li>
+              <li>Minimized transit distance</li>
+              <li>Full dispatcher flexibility</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pipeline-footer-note">
+          <p>You do not need to begin with a sophisticated transport-management system. Existing spreadsheets, order lists, and practical knowledge from your dispatch team can provide the starting point.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. HOW IT WORKS -->
+  <section class="sec sec--white" id="how-it-works">
+    <div class="shell">
+      <div class="sechead sechead--center">
+        <h2 class="d2 r">How Route Planning With Dymek Works</h2>
+        <p class="intro r">A practical 4-step workflow built around your team.</p>
+      </div>
+
+      <div class="workflow-grid-4">
+        <article class="img-card r" data-d="1">
+          <img src="assets/stacked-shipping-containers.webp" width="900" height="601" alt="Stacked shipping containers representing the day's orders to be delivered" loading="lazy" decoding="async" />
+          <div class="img-card__overlay">
+            <span class="step-badge-high">Step 01</span>
+            <h3>Provide the Day's Deliveries</h3>
+            <p>Import customer orders, daily fulfillment lists, and collection points using the spreadsheet formats and templates your team already relies on every day.</p>
+          </div>
+        </article>
+        <article class="img-card r" data-d="2">
+          <img src="assets/warehouse-team-order-picking.webp" width="900" height="600" alt="Warehouse staff walking a racking aisle while preparing daily delivery orders" loading="lazy" decoding="async" />
+          <div class="img-card__overlay">
+            <span class="step-badge-high">Step 02</span>
+            <h3>Apply Operating Requirements</h3>
+            <p>Incorporate vehicle load capacities, delivery time windows, driver shift limits, customer priority levels, and site access restrictions.</p>
+          </div>
+        </article>
+        <article class="img-card r" data-d="3">
+          <img src="assets/delivery-driver-loading-van.webp" width="900" height="601" alt="Delivery driver loading parcels into a van for a planned route" loading="lazy" decoding="async" />
+          <div class="img-card__overlay">
+            <span class="step-badge-high">Step 03</span>
+            <h3>Generate Practical Routes</h3>
+            <p>The system analyzes thousands of route combinations to produce an efficient, balanced daily schedule tailored to your available drivers and vehicles.</p>
+          </div>
+        </article>
+        <article class="img-card r" data-d="4">
+          <img src="assets/container-terminal-aerial.webp" width="900" height="506" alt="Aerial view of organised container rows, like a reviewed and adjusted route plan" loading="lazy" decoding="async" />
+          <div class="img-card__overlay">
+            <span class="step-badge-high">Step 04</span>
+            <h3>Review and Adjust</h3>
+            <p>Your dispatchers stay in control, fine-tuning final routes with local knowledge whenever urgent customer requests arise.</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="closer r">The objective is not to replace your team's judgement. It is to give them a stronger and faster starting point.</p>
+
+    </div>
+  </section>
+
+  <!-- Built around your operation (blue) -->
+  <section class="sec sec--blue" id="built-around">
+    <div class="shell">
+      <div>
+        <div class="sechead sechead--center">
+          <h2 class="d2 r">Built Around Your Operation, Not a Generic Template</h2>
+          <p class="intro r">Every delivery business works differently.</p>
+        </div>
+
+        <div class="cases-grid-cards">
+          <div class="case-card r"><div class="case-card__icon">01</div><p>A food distributor may need refrigerated vehicles and strict delivery times.</p></div>
+          <div class="case-card r"><div class="case-card__icon">02</div><p>A supermarket chain may need to replenish multiple stores from distribution points.</p></div>
+          <div class="case-card r"><div class="case-card__icon">03</div><p>A building-material supplier may consider vehicle size, unloading time, and site access.</p></div>
+          <div class="case-card r"><div class="case-card__icon">04</div><p>A regional logistics company manages mixed customers, vehicle types, and collections.</p></div>
+        </div>
+
+        <p class="r center-text" style="margin-top: 1.5rem;">Generic software works when operations fit standard assumptions. But many established businesses have custom constraints.</p>
+        <p class="kicker center-text">A customized planning tool adapts to factors such as:</p>
+
+        <ul class="feature-grid-cards" style="max-width: 950px; margin-inline: auto;">
+          <li class="f-card-item">Different vehicle types and capacities</li>
+          <li class="f-card-item">Multiple depots or loading points</li>
+          <li class="f-card-item">Fixed or flexible delivery windows</li>
+          <li class="f-card-item">Driver shift limits and availability</li>
+          <li class="f-card-item">Customer priorities and tiering</li>
+          <li class="f-card-item">Recurring delivery patterns</li>
+          <li class="f-card-item">Loading and unloading times</li>
+          <li class="f-card-item">Vehicle-access and site restrictions</li>
+          <li class="f-card-item">Return collections and drop-offs</li>
+          <li class="f-card-item">Manual dispatcher overrides</li>
+        </ul>
+
+        <p class="closer r">The tool adapts to the way your business operates, rather than forcing your operation into a rigid standard workflow.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. BENEFITS & FIT -->
+  <section class="sec sec--white" id="benefits">
+    <div class="shell">
+      <div class="sechead sechead--center">
+        <h2 class="d2 r">What Better Route Planning Can Improve</h2>
+      </div>
+
+      <div class="benefits-grid-custom">
+        <article class="img-card r" data-d="1">
+          <img src="assets/warehouse-team-order-picking.webp" width="900" height="600" alt="Warehouse staff walking a racking aisle while preparing daily delivery orders" loading="lazy" decoding="async" />
+          <div class="img-card__overlay"><h3>Spend Less Time Planning</h3><p>Reduce the hours spent manually sorting daily orders, cross-referencing locations, and rearranging spreadsheet rows.</p></div>
+        </article>
+        <article class="img-card r" data-d="2">
+          <img src="assets/warehouse-team-packing-orders.webp" width="900" height="600" alt="Warehouse team packing and checking orders for dispatch" loading="lazy" decoding="async" />
+          <div class="img-card__overlay"><h3>Reduce Unnecessary Travel</h3><p>Build efficient routes designed to minimize avoidable distance, fuel consumption, and driving time.</p></div>
+        </article>
+        <article class="img-card r" data-d="3">
+          <img src="assets/freight-truck-on-highway.webp" width="900" height="600" alt="Freight truck on a highway following an efficient delivery route" loading="lazy" decoding="async" />
+          <div class="img-card__overlay"><h3>Make Better Use of Your Fleet</h3><p>Distribute daily delivery volumes evenly across your available vehicles and drivers without bottlenecks.</p></div>
+        </article>
+        <article class="img-card r" data-d="4">
+          <img src="assets/warehouse-racking-aisle.webp" width="700" height="1050" alt="Warehouse racking aisle stocked with goods ready for distribution" loading="lazy" decoding="async" />
+          <div class="img-card__overlay"><h3>Respond Faster to Change</h3><p>Recalculate or modify routes quickly when orders change, customer requests arrive, or vehicles break down.</p></div>
+        </article>
+        <article class="img-card r" data-d="5">
+          <img src="assets/container-stacks-port-road.webp" width="700" height="1244" alt="Container stacks beside a port road, showing growing freight volume" loading="lazy" decoding="async" />
+          <div class="img-card__overlay"><h3>Create More Consistent Decisions</h3><p>Reduce dependence on a single person remembering every customer preference and operating rule.</p></div>
+        </article>
+        <article class="img-card r" data-d="6">
+          <img src="assets/warehouse-worker-carrying-parcel.webp" width="700" height="1050" alt="Warehouse worker carrying a parcel to the dispatch area" loading="lazy" decoding="async" />
+          <div class="img-card__overlay"><h3>Support Business Growth</h3><p>Scale up daily delivery volume without letting manual route planning become an operational bottleneck.</p></div>
+        </article>
+        <article class="img-card r" data-d="7">
+          <img src="assets/delivery-team-checking-van-load.webp" width="900" height="506" alt="Delivery team checking the van load against the route plan" loading="lazy" decoding="async" />
+          <div class="img-card__overlay"><h3>Preserve Dispatcher Knowledge</h3><p>Capture the practical rules used by veteran staff in a planning framework applied consistently across the team.</p></div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Designed for established operations (blue) -->
+  <section class="sec sec--blue" id="fit">
+    <div class="shell">
+      <div>
+        <div class="sechead sechead--center">
+          <h2 class="d2 r">Designed for Established Delivery Operations</h2>
+          <p class="intro r">Built for operations where efficiency matters and spreadsheet limitations are holding you back.</p>
+        </div>
+
+        <div class="established-grid">
+          <div class="est-card r" data-d="1"><div class="est-num">01</div><h3>Own Fleet &amp; Multiple Routes</h3><p>Operate your own delivery vehicles and plan multiple routes each day.</p></div>
+          <div class="est-card r" data-d="2"><div class="est-num">02</div><h3>Spreadsheet Outgrown</h3><p>Receive delivery information through order lists and have outgrown manual dispatching.</p></div>
+          <div class="est-card r" data-d="3"><div class="est-num">03</div><h3>Complex Constraints</h3><p>Face recurring vehicle capacity limits, strict time windows, and customer priorities.</p></div>
+          <div class="est-card r" data-d="4"><div class="est-num">04</div><h3>Practical Flexibility</h3><p>Need flexible tools without implementing a cumbersome enterprise transport system.</p></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries (white) -->
+  <section class="sec sec--white" id="industries">
+    <div class="shell">
+      <div>
+        <div class="industries">
+          <div class="sechead sechead--center">
+            <p class="badge-tag">Who It's For</p>
+            <h2 class="d2 r">Built for Businesses Like Yours</h2>
+            <p class="intro r">Select your industry to start an enquiry in one click.</p>
+          </div>
+          <ul class="ind-grid">
+          <li><a class="ind-tile r" href="#contact-form" data-industry="Distributors &amp; Wholesalers">
+            <span class="ind-tile__ico" aria-hidden="true"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg></span>
+            <span class="ind-tile__name">Distributors &amp; Wholesalers</span>
+            <span class="ind-tile__go">Start enquiry <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+          <li><a class="ind-tile r" href="#contact-form" data-industry="Food &amp; Beverage Suppliers">
+            <span class="ind-tile__ico" aria-hidden="true"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 2v8a3 3 0 0 0 6 0V2"/><path d="M9 2v20"/><path d="M18 2c-2 2-3 5-3 8h3v12"/></svg></span>
+            <span class="ind-tile__name">Food &amp; Beverage Suppliers</span>
+            <span class="ind-tile__go">Start enquiry <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+          <li><a class="ind-tile r" href="#contact-form" data-industry="Supermarket &amp; Retail Chains">
+            <span class="ind-tile__ico" aria-hidden="true"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.2a1 1 0 0 0 1 .8h9.6a1 1 0 0 0 1-.8L21 7H6"/></svg></span>
+            <span class="ind-tile__name">Supermarket &amp; Retail Chains</span>
+            <span class="ind-tile__go">Start enquiry <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+          <li><a class="ind-tile r" href="#contact-form" data-industry="Pharmaceutical Distributors">
+            <span class="ind-tile__ico" aria-hidden="true"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2.5" y="8.5" width="19" height="7" rx="3.5" transform="rotate(-45 12 12)"/><path d="M8.5 8.5l7 7"/></svg></span>
+            <span class="ind-tile__name">Pharmaceutical Distributors</span>
+            <span class="ind-tile__go">Start enquiry <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+          <li><a class="ind-tile r" href="#contact-form" data-industry="Industrial &amp; Building Materials">
+            <span class="ind-tile__ico" aria-hidden="true"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l6-4v17"/><path d="M11 9h8v12"/><path d="M14 13h2M14 17h2M7 11h1M7 15h1"/></svg></span>
+            <span class="ind-tile__name">Industrial &amp; Building Materials</span>
+            <span class="ind-tile__go">Start enquiry <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+          <li><a class="ind-tile r" href="#contact-form" data-industry="Regional Trucking Companies">
+            <span class="ind-tile__ico" aria-hidden="true"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 6h13v10H1z"/><path d="M14 9h4l4 4v3h-8"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>
+            <span class="ind-tile__name">Regional Trucking Companies</span>
+            <span class="ind-tile__go">Start enquiry <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+          <li><a class="ind-tile r" href="#contact-form" data-industry="Third-Party Logistics (3PL)">
+            <span class="ind-tile__ico" aria-hidden="true"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M7 21v-8h10v8"/><path d="M7 17h10"/></svg></span>
+            <span class="ind-tile__name">Third-Party Logistics (3PL)</span>
+            <span class="ind-tile__go">Start enquiry <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+          <li><a class="ind-tile r" href="#contact-form" data-industry="Catering &amp; Commercial Laundry">
+            <span class="ind-tile__ico" aria-hidden="true"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M8 3l-5 3 2 4 2-1v12h10V9l2 1 2-4-5-3a4 4 0 0 1-8 0z"/></svg></span>
+            <span class="ind-tile__name">Catering &amp; Commercial Laundry</span>
+            <span class="ind-tile__go">Start enquiry <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+          <li><a class="ind-tile r" href="#contact-form" data-industry="Service &amp; Collection Fleets">
+            <span class="ind-tile__ico" aria-hidden="true"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span>
+            <span class="ind-tile__name">Service &amp; Collection Fleets</span>
+            <span class="ind-tile__go">Start enquiry <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+          <li><a class="ind-tile r" href="#contact-form" data-industry="Recurring Multi-Stop Deliveries">
+            <span class="ind-tile__ico" aria-hidden="true"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8a3 3 0 0 0 0-6H8a3 3 0 0 1 0-6h8"/></svg></span>
+            <span class="ind-tile__name">Recurring Multi-Stop Deliveries</span>
+            <span class="ind-tile__go">Start enquiry <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+          </ul>
+        </div>
+
+        <div class="measure center-block" style="margin-top: 2rem; text-align: center;">
+          <p class="highlight">The strongest fit is usually an established operation with enough daily deliveries for route efficiency to matter, but which still relies heavily on spreadsheets and dispatcher experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band" aria-label="Book a consultation">
+    <svg class="cta-band__route" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M-10 150 C 90 150, 120 60, 220 70 S 360 170, 450 120 S 560 40, 620 50" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="2.5" stroke-dasharray="7 9"/><circle cx="220" cy="70" r="7" fill="#fff" fill-opacity=".85"/><circle cx="450" cy="120" r="7" fill="#fff" fill-opacity=".85"/><circle cx="220" cy="70" r="16" fill="none" stroke="#fff" stroke-opacity=".35"/><circle cx="450" cy="120" r="16" fill="none" stroke="#fff" stroke-opacity=".35"/></svg>
+    <div class="shell cta-band__in">
+      <div class="cta-band__text">
+        <span class="cta-band__icon" aria-hidden="true"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3.3-6.97"/><path d="M21 4v5h-5"/><path d="M12 7v5l3 2"/></svg></span>
+        <div>
+          <h2 class="cta-band__title">Not sure if a custom route-planning tool fits your operation?</h2>
+          <p>Tell us how you plan routes today. We will tell you honestly whether a custom tool makes sense.</p>
+          <ul class="cta-band__points">
+            <li><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Free consultation</li>
+            <li><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>No obligation</li>
+            <li><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Local team in your region</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cta-band__actions">
+        <a class="btn btn--solid btn--lg" href="#contact-form">Book a free consultation</a>
+        <a class="btn btn--ghost btn--lg" href="mailto:web@dymek.com">Email web@dymek.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. TECHNOLOGY & EXPERIENCE -->
+  <section class="sec sec--blue tech-open-sec" id="technology">
+    <div class="shell">
+      <div class="sechead sechead--center">
+        <p class="badge-tag">Methodology &amp; Engineering</p>
+        <h2 class="d2 r">Rigorous Mathematics Behind a Practical Tool</h2>
+      </div>
+
+      <div class="tech-open-grid r">
+        <div class="tech-open-narrative">
+          <p class="intro">A route that appears reasonable on a map may not be the best route once vehicle capacity, delivery times, driver hours, loading requirements, and customer priorities are considered together.</p>
+          <p>Our approach uses <em>mathematical optimization and operational modelling</em> to evaluate these factors systematically.</p>
+          <p>The technology is <strong>powered by Lynxx</strong>, a data science and optimization specialist whose technology has been serving transportation companies for the last 16 years. Dymek brings that proven technology to delivery operations across Southeast Asia, with local coordination for every project.</p>
+          <p>The goal is not to introduce complexity into your business. The goal is to place sophisticated analysis behind a planning tool that is straightforward for your team to use.</p>
+          <p class="kicker">Depending on the operation, the solution may draw on:</p>
+          <ul class="tech-pills">
+            <li>Route optimization algorithms</li>
+            <li>Operations research methods</li>
+            <li>Statistical demand modelling</li>
+            <li>Operational simulation</li>
+            <li>Advanced forecasting</li>
+            <li>Custom software development</li>
+          </ul>
+          <p style="margin-top: 1rem;">The method is selected according to the problem. Technology is used where it produces a practical operational benefit, not simply for its own sake.</p>
+        </div>
+
+        <div class="client-story-card" style="margin: 0; max-width: none;">
+          <figure class="client-story__media" style="min-height: 180px;">
+            <img src="assets/delivery-truck-fleet.webp" width="1200" height="800" alt="Fleet of delivery trucks parked and ready for the day's routes" loading="lazy" decoding="async" />
+          </figure>
+          <div class="client-story__copy" style="padding: 1.5rem;">
+            <p class="editorial-callout-title">What is the most practical way to complete today's deliveries using the vehicles and drivers available?</p>
+            <p class="client-answer">For an SME delivery operation, the system does not need to be unnecessarily complicated. It needs to reflect the business accurately, produce useful routes, and fit naturally into the dispatcher's daily workflow.</p>
+            <div class="client-meta">
+              <strong>Powered by Lynxx</strong>
+              <span>Serving transportation companies for 16 years</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Regional coordination (white) -->
+  <section class="sec sec--white" id="regional">
+    <div class="shell">
+      <div class="regional-coord-open r">
+        <div class="regional-coord__media">
+          <img src="assets/busy-container-port.webp" width="1200" height="900" alt="Busy container port with cranes, representing regional logistics across Southeast Asia" loading="lazy" decoding="async" />
+        </div>
+        <div class="regional-coord__content">
+          <h3 class="d2" style="margin-bottom: 0.5rem;">Local Project Coordination Across Southeast Asia</h3>
+          <p class="intro">Dymek has worked with businesses across Asia since 1989, with offices in Singapore, Thailand, Malaysia, Vietnam and the Philippines. Our local teams coordinate route-planning projects throughout the region.</p>
+          <p class="kicker">We work with your team to understand:</p>
+          <ul class="qlist">
+            <li>How routes are currently planned</li>
+            <li>What information is already available</li>
+            <li>Which constraints must be considered</li>
+            <li>What causes the greatest difficulty</li>
+            <li>How dispatchers need to review or modify routes</li>
+            <li>What the finished planning tool should deliver</li>
+          </ul>
+          <p style="margin-top: 0.75rem;">This local coordination helps connect your operational knowledge with the Lynxx optimization technology and software expertise required to build the solution.</p>
+          <p class="kicker">Route-planning projects coordinated in:</p>
+          <ul class="country-list" aria-label="Countries served">
+            <li>Singapore</li>
+            <li>Thailand</li>
+            <li>Malaysia</li>
+            <li>Vietnam</li>
+            <li>Philippines</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CONTACT & FAQ -->
+  <section class="sec sec--blue" id="contact">
+    <div class="shell">
+      <div class="start-routes-inspo r">
+        <div class="start-routes__left">
+          <p class="badge-tag">Consultation</p>
+          <h2 class="d2">Start With the Routes You Already Run</h2>
+          <p class="intro">You do not need to prepare a detailed technical specification.</p>
+          <p>Begin by showing us how your team currently plans deliveries. During an initial consultation, we discuss your setup to see whether a custom tool fits your operation.</p>
+        </div>
+        <div class="start-routes__right">
+          <div class="sr-item">
+            <div class="sr-icon" aria-hidden="true"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div><h3>Fleet &amp; Stops Assessment</h3><p>Review your number of vehicles and approximate daily stops.</p></div>
+          </div>
+          <div class="sr-item">
+            <div class="sr-icon" aria-hidden="true"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div><h3>Workflow Analysis</h3><p>Analyze how order information is recorded and how long planning takes.</p></div>
+          </div>
+          <div class="sr-item">
+            <div class="sr-icon" aria-hidden="true"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div><h3>Friction Points &amp; Goals</h3><p>Identify where inefficiencies occur and what your ideal tool should accomplish.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="measure center-block" style="margin-top: 2rem; text-align: center;">
+        <p class="r">From there, we can determine whether a customized route-planning tool is suitable for your operation and what the next step should be.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Enquiry form (white) -->
+  <section class="sec sec--white" id="enquiry-form">
+    <div class="shell">
+      <div class="sechead sechead--center">
+        <h2 class="d2 r">Discuss Your Delivery Routes</h2>
+        <p class="intro r">Tell us a little about the routes you currently run, and a member of the Dymek team will contact you to arrange an initial consultation.</p>
+      </div>
+
+      <div class="contact-grid" id="contact-form">
+      <aside class="contact-aside r">
+        <h3 class="d3">What happens next</h3>
+        <ol class="next-steps">
+          <li><strong>You send the form</strong><span>It takes about 2 minutes.</span></li>
+          <li><strong>We contact you</strong><span>A Dymek team member replies to arrange a call.</span></li>
+          <li><strong>Free consultation</strong><span>We review how you plan routes today and whether a custom tool fits.</span></li>
+        </ol>
+        <div class="direct">
+          <p class="direct__title">Prefer to contact us directly?</p>
+          <a class="direct__link" href="mailto:web@dymek.com"><span class="direct__ico" aria-hidden="true">@</span>web@dymek.com</a>
+        </div>
+      </aside>
+
+      <div class="formwrap r">
+        <h3 class="d3">Send an enquiry</h3>
+
+        <!-- Enquiries are sent directly in the background to web@dymek.com (FormSubmit),
+             with a backup copy saved in Netlify Forms. See app.js. -->
+        <form class="form" id="enquiry" name="route-enquiry" method="POST" action="https://formsubmit.co/web@dymek.com"
+              data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="route-enquiry" />
+          <p class="hp" aria-hidden="true"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+
+          <p class="field"><label for="f-name">Name <span class="req" aria-hidden="true">*</span></label><input id="f-name" name="name" type="text" autocomplete="name" required /></p>
+          <p class="field"><label for="f-company">Company <span class="req" aria-hidden="true">*</span></label><input id="f-company" name="company" type="text" autocomplete="organization" required /></p>
+          <p class="field"><label for="f-email">Email <span class="req" aria-hidden="true">*</span></label><input id="f-email" name="email" type="email" autocomplete="email" required /></p>
+          <p class="field"><label for="f-tel">Telephone</label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" /></p>
+          <p class="field"><label for="f-country">Country <span class="req" aria-hidden="true">*</span></label><input id="f-country" name="country" type="text" autocomplete="country-name" required /></p>
+          <p class="field"><label for="f-veh">Delivery vehicles</label><input id="f-veh" name="vehicles" type="text" inputmode="numeric" placeholder="e.g. 12" /></p>
+          <p class="field"><label for="f-ind">Industry</label>
+            <select id="f-ind" name="industry">
+              <option value="">Select your industry</option>
+              <option>Distributors &amp; Wholesalers</option>
+              <option>Food &amp; Beverage Suppliers</option>
+              <option>Supermarket &amp; Retail Chains</option>
+              <option>Pharmaceutical Distributors</option>
+              <option>Industrial &amp; Building Materials</option>
+              <option>Regional Trucking Companies</option>
+              <option>Third-Party Logistics (3PL)</option>
+              <option>Catering &amp; Commercial Laundry</option>
+              <option>Service &amp; Collection Fleets</option>
+              <option>Recurring Multi-Stop Deliveries</option>
+              <option>Other</option>
+            </select></p>
+          <p class="field"><label for="f-day">Deliveries or collections per day</label><input id="f-day" name="deliveries_per_day" type="text" inputmode="numeric" placeholder="e.g. 150" /></p>
+          <p class="field field--wide"><label for="f-plan">How do you currently plan your daily routes?</label><textarea id="f-plan" name="current_planning" rows="4" placeholder="e.g. Our dispatcher plans routes in Excel every evening"></textarea></p>
+          <p class="field field--wide"><label for="f-diff">What is the main difficulty you would like to improve?</label><textarea id="f-diff" name="main_difficulty" rows="4" placeholder="e.g. Planning takes too long and last-minute orders break the plan"></textarea></p>
+
+          <p class="field field--wide form__foot"><button class="btn btn--solid" type="submit">Submit Enquiry</button></p>
+          <p class="field--wide form__status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <p class="note">Fields marked * are required. Please do not include confidential customer addresses or detailed shipment information in this form. These can be discussed securely after we contact you.</p>
+      </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- 7. FAQ (blue) -->
+  <section class="sec sec--blue faq-sec" id="faq">
+    <div class="shell">
+      <div class="sechead sechead--center">
+        <p class="badge-tag">Got Questions?</p>
+        <h2 class="d2 r">Frequently Asked Questions</h2>
+        <p class="intro r">Clear answers about our custom route-planning approach.</p>
+      </div>
+
+      <div class="faq-list r">
+        <details class="faq-item" open>
+          <summary><span class="faq-q">Do we need to replace our existing order-management system?</span><span class="faq-plus" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p><strong>Not necessarily.</strong> The route-planning tool can begin with the information your team already maintains, including spreadsheets and exported order lists. Any integration requirements can be discussed based on your current systems and preferred workflow.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-q">Do we need GPS or vehicle-tracking data?</span><span class="faq-plus" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p><strong>Not necessarily.</strong> GPS or telematics data may be useful for some projects, but the initial planning model can often begin with delivery locations, orders, vehicle details, operating constraints, and knowledge from your dispatch team.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-q">Will the tool make all decisions automatically?</span><span class="faq-plus" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p><strong>Human expertise remains central.</strong> The tool is intended to support your dispatcher, not remove their control. It can generate a strong initial route plan while allowing experienced staff to review and adjust the result based on circumstances that may not be fully represented in the data.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-q">Is this the same as a standard route-planning subscription?</span><span class="faq-plus" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p><strong>No.</strong> The objective is to create an interactive planning tool configured around your delivery operation and its specific requirements. This is most valuable when spreadsheets have become difficult to manage and generic software does not adequately reflect the way your business works.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-q">Is the solution only for large fleets?</span><span class="faq-plus" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p><strong>No.</strong> Suitability depends less on the number of vehicles than on the complexity and value of the routing problem. A business with a modest fleet may still benefit if it manages many daily stops, strict delivery windows, capacity limitations, multiple vehicle types, or complicated customer requirements.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-q">Can the tool accommodate last-minute changes?</span><span class="faq-plus" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p><strong>Flexible to operational updates.</strong> The specific functionality will depend on the agreed project scope, but the planning approach can be designed to help your team update routes when orders, vehicles, or operating conditions change.</p></div>
+        </details>
+      </div>
+      <p class="link-row r"><a class="text-link" href="#contact-form">Still have a question? Ask us directly <svg class="arr" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+    </div>
+
+  </section>
+
+  <!-- 8. FINAL CTA (white) -->
+  <section class="sec sec--white final-cta" id="get-started">
+    <div class="shell">
+      <div class="close-card r">
+        <div class="close-card__bg" aria-hidden="true"></div>
+        <div class="close-card__content">
+          <p class="badge-tag">Free Initial Consultation</p>
+          <h2 class="close-card__title">Plan Tomorrow's Deliveries With Greater Confidence</h2>
+          <p class="close-card__lead">Your team already understands your customers, vehicles, and local operating conditions. A customized route-planning tool helps turn that knowledge into faster, more consistent, and more efficient daily plans.</p>
+          <ul class="close-card__points">
+            <li><span class="close-card__tick"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></span>Start from the spreadsheets you already use</li>
+            <li><span class="close-card__tick"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></span>No technical specification needed</li>
+            <li><span class="close-card__tick"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></span>Local coordination across Southeast Asia</li>
+          </ul>
+          <div class="close-card__actions">
+            <a class="btn btn--solid btn--lg" href="#contact-form">Discuss the routes you currently run</a>
+            <a class="btn btn--ghost btn--lg" href="mailto:web@dymek.com">Email web@dymek.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot__grid">
+    <div class="foot__col foot__about">
+      <p class="foot__logo"><img class="logo-img" src="assets/dymek-logo.png" alt="Dymek" height="34" loading="lazy" onerror="this.remove()" /><span class="wordmark wordmark--foot">DYMEK</span></p>
+      <p>Dymek Company Ltd was established in 1989 as an advanced equipment distributor to leading manufacturers and R&amp;D facilities in the aerospace, biomedical, semiconductor, data storage and photovoltaic industries.</p>
+      <p>With offices across Southeast Asia, Hong Kong, China and Taiwan, Dymek now also helps delivery operations replace spreadsheet-based dispatching with custom route-planning tools.</p>
+    </div>
+
+    <nav class="foot__col" aria-label="Footer navigation">
+      <h2 class="foot__h">Navigation</h2>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#problem">The Problem</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#benefits">Benefits &amp; Fit</a></li>
+        <li><a href="#technology">Technology</a></li>
+        <li><a href="#contact">Contact &amp; FAQ</a></li>
+      </ul>
+    </nav>
+
+    <div class="foot__col">
+      <h2 class="foot__h">Solutions</h2>
+      <ul>
+        <li><a href="#how-it-works">Custom Route Planning Tools</a></li>
+        <li><a href="#problem">Spreadsheet-to-Route Conversion</a></li>
+        <li><a href="#technology">Route Optimization &amp; Modelling</a></li>
+        <li><a href="#technology">Regional Project Coordination</a></li>
+      </ul>
+    </div>
+
+    <div class="foot__col">
+      <h2 class="foot__h">Head Office</h2>
+      <address>
+        <p>Unit B1, 18/F, TML Tower,<br />3 Hoi Shing Road, Tsuen Wan,<br />N.T., Hong Kong</p>
+        <p class="foot__highlight">Email: <a href="mailto:web@dymek.com">web@dymek.com</a></p>
+        <p><a href="https://www.dymek.com" rel="noopener">www.dymek.com</a></p>
+      </address>
+    </div>
+  </div>
+
+  <div class="shell foot__offices">
+    <h2 class="foot__h">Southeast Asia Offices</h2>
+    <div class="offices-grid">
+      <address class="office">
+        <strong>Singapore</strong>
+        <span>3 Ang Mo Kio St 62, #08-20 Link@AMK, Singapore 569139</span>
+      </address>
+      <address class="office">
+        <strong>Thailand</strong>
+        <span>89/320 Moo 1, Khlong Luang District, Pathum Thani 12120</span>
+      </address>
+      <address class="office">
+        <strong>Malaysia (Penang)</strong>
+        <span>Block B-6-2 Bay Avenue, Lorong Bayan Indah 3, Bayan Lepas, 11900 Penang</span>
+      </address>
+      <address class="office">
+        <strong>Vietnam (Hanoi)</strong>
+        <span>Floor 2, CT1 Building, Sevin Office, 609 Truong Dinh Str, Hoang Mai Dist, Hanoi</span>
+      </address>
+      <address class="office">
+        <strong>Philippines</strong>
+        <span>Unit 1605 Richville Corporate Tower, 1107 Alabang-Zapote Road, Madrigal Business Park, Ayala-Alabang, Muntinlupa City 1781</span>
+      </address>
+    </div>
+    <p class="foot__other">Also in Beijing, Shanghai and Dongguan (China) and Hsinchu (Taiwan).</p>
+  </div>
+
+  <div class="shell foot__bottom">
+    <p>&copy; <span id="year">2026</span> Dymek Company Ltd. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="mobile-cta" aria-hidden="true">
+  <a class="btn btn--solid" href="#contact-form" tabindex="-1">Book a free consultation</a>
+  <a class="mobile-cta__call" href="mailto:web@dymek.com" tabindex="-1" aria-label="Email web@dymek.com"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+</div>
+
+<a class="to-top" href="#top" aria-label="Back to top">
+  <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</a>
+
+<script src="app.js" defer></script>
+</body>
+</html>
