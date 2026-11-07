@@ -196,7 +196,7 @@ if(say){
   say.classList.add("is-split");
 }
 var counted=false;
-  function count(){if(counted)return;counted=true;$$("[data-count]",say).forEach(function(c){var to=+c.dataset.count,from=to>1000?to-40:0,t0=0;
+  function count(){if(counted)return;counted=true;$$("[data-count]",say).forEach(function(c){var to=+c.dataset.count,from=to>1000?new Date().getFullYear():0,t0=0;
     if(still){c.textContent=to;return}
     function step(t){if(!t0)t0=t;var k=clamp((t-t0)/1400);k=1-Math.pow(1-k,3);c.textContent=Math.round(from+(to-from)*k);if(k<1)requestAnimationFrame(step)}requestAnimationFrame(step)})}
 var pinOn=false;

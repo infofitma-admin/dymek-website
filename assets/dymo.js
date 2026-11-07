@@ -91,7 +91,7 @@ function send(text){
     })
     .catch(function(){
       b.classList.add("err");
-      b.innerHTML="<p><strong>Sorry, I couldn’t reach my knowledge base just now.</strong> Please try again in a moment, or contact our engineers at <a href=\"mailto:info@dymek.com\">info@dymek.com</a> / +852 2415 3601.</p>";
+      b.innerHTML="<p><strong>Sorry, I couldn’t reach my knowledge base just now.</strong> Please try again in a moment, or contact our engineers at <a href=\"mailto:web@dymek.com\">web@dymek.com</a> / +852 2415 3601.</p>";
       history.pop();save();
     })
     .then(function(){busy=false;sendBtn.disabled=false;ta.focus()});

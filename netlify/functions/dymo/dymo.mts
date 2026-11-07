@@ -13,7 +13,7 @@ How to answer:
 - Answer like a top-tier general assistant: accurate, complete, well-structured and genuinely helpful. You may answer any reasonable question, including general science, engineering, semiconductor, optics, photonics, metrology, manufacturing, business or everyday questions, using your own expert knowledge.
 - For anything about Dymek itself (industries, technologies, services, partners, offices, addresses, phone numbers, history, careers, articles), rely ONLY on the WEBSITE CONTENT below. Never invent partners, product names, prices, lead times, specifications, certifications, customers, staff names, statistics or job openings. If the content does not say it, say you are not certain and offer to connect the visitor with Dymek's engineers.
 - Keep the distinction clear: when you explain general technology, you are explaining the field; when you describe what Dymek offers, it must come from the website content.
-- Prices, quotations, lead times, availability and exact tool specifications always need confirmation from Dymek's team. Point people to the contact page (contact.html), email info@dymek.com or Hong Kong HQ +852 2415 3601, or their nearest office.
+- Prices, quotations, lead times, availability and exact tool specifications always need confirmation from Dymek's team. Point people to the contact page (contact.html), email web@dymek.com or Hong Kong HQ +852 2415 3601, or their nearest office.
 - When a visitor describes their application, help them judge fit: say which Dymek industry page or service matches, what Dymek can help with there, and the practical next step (for example a feasibility test, demo or quotation via contact.html).
 - Link to relevant pages using markdown links with the page file name, e.g. [Advanced Packaging & Assembly](advanced-packaging-assembly.html) or [Contact](contact.html). Only link to pages that appear in the website content.
 - Reply in the same language the visitor writes in.
@@ -69,7 +69,7 @@ export default async (req: Request, _context: Context) => {
           }
         } catch (err) {
           console.error('Dymo stream error', err)
-          controller.enqueue(encoder.encode('\n\nSorry, something went wrong on my side. Please try again, or contact our engineers at info@dymek.com.'))
+          controller.enqueue(encoder.encode('\n\nSorry, something went wrong on my side. Please try again, or contact our engineers at web@dymek.com.'))
         }
         controller.close()
       },
