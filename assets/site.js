@@ -179,9 +179,11 @@ $$("form[data-form]").forEach(function(f){
     mail.append("_subject",(f.getAttribute("name")==="careers"?"New job application":"New website enquiry")+" from "+(fd.get("name")||"website visitor"));
     mail.append("_template","table");mail.append("_captcha","false");
     if(fd.get("email"))mail.append("_replyto",fd.get("email"));
-    function sendMail(n){return fetch("https://formsubmit.co/ajax/"+f.dataset.to,{method:"POST",headers:{Accept:"application/json"},body:mail})
+    function sendMail(n){var ac=window.AbortController?new AbortController():null;var t=ac&&setTimeout(function(){ac.abort()},9000);
+      return fetch("https://formsubmit.co/ajax/"+f.dataset.to,{method:"POST",headers:{Accept:"application/json"},body:mail,signal:ac?ac.signal:undefined})
+      .then(function(r){clearTimeout(t);return r})
       .then(function(r){return r.json()}).then(function(j){if(String(j.success)!=="true")throw j;return true})
-      .catch(function(e){if(n>0)return new Promise(function(res){setTimeout(res,n===2?1500:4000)}).then(function(){return sendMail(n-1)});return false})}
+      .catch(function(e){if(n>0)return new Promise(function(res){setTimeout(res,n===2?1200:2500)}).then(function(){return sendMail(n-1)});return false})}
     var toMail=sendMail(2);
     /* 2) backup copy in the Netlify Forms dashboard (best effort) */
     var nbody=f.enctype==="multipart/form-data"?fd:new URLSearchParams(fd).toString();
