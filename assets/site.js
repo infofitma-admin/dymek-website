@@ -179,7 +179,7 @@ $$("form[data-form]").forEach(function(f){
     mail.append("_subject",(f.getAttribute("name")==="careers"?"New job application":"New website enquiry")+" from "+(fd.get("name")||"website visitor"));
     mail.append("_template","table");mail.append("_captcha","false");
     if(fd.get("email"))mail.append("_replyto",fd.get("email"));
-    var W3F_KEY="";  /* Web3Forms access key for web@dymek.com */
+    var W3F_KEY="b6a82774-3c24-4790-bfef-8705a4bdb606";  /* Web3Forms access key for web@dymek.com */
     if(W3F_KEY){
       var w=new FormData(); mail.forEach(function(v,k){if(k.charAt(0)!=="_"&&!(v instanceof File))w.append(k,v)});
       w.append("access_key",W3F_KEY); w.append("subject",mail.get("_subject")); w.append("from_name","Dymek website");
