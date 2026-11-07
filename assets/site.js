@@ -269,3 +269,8 @@ btns.forEach(function(b,i){b.addEventListener('click',function(){open(i)})});
 box.querySelector('.mm-x').addEventListener('click',close);box.querySelector('.mm-prev').addEventListener('click',function(){show(cur-1)});box.querySelector('.mm-next').addEventListener('click',function(){show(cur+1)});
 box.addEventListener('click',function(e){if(e.target===box)close()});
 document.addEventListener('keydown',function(e){if(box.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1)});})();
+/* Home: project ruler fills as the section scrolls */
+(function(){var s=document.querySelector('[data-proj]');if(!s)return;var marks=[].slice.call(s.querySelectorAll('.pr-mark')),steps=[].slice.call(s.querySelectorAll('.proj-step'));
+function upd(){var r=s.getBoundingClientRect(),vh=innerHeight,k=Math.min(1,Math.max(0,(vh*.85-r.top)/(r.height*.75)));s.style.setProperty('--k',k.toFixed(3));
+marks.forEach(function(m,i){var on=k>=(i*2+1)/12;m.classList.toggle('on',on);if(steps[i])steps[i].classList.toggle('on',on&&k<(i*2+3)/12)})}
+upd();addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd)})();
