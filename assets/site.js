@@ -170,9 +170,21 @@ $$("form[data-form]").forEach(function(f){
       msg("info","<b>This preview isn’t connected to an inbox.</b><span>On the live site this form goes straight to our team. For now, please email <strong>"+f.dataset.to+"</strong> with your message.</span>");
       return;
     }
-    var fd=new FormData(f), body = f.enctype==="multipart/form-data"?fd:new URLSearchParams(fd).toString();
-    fetch("/",{method:"POST",headers:f.enctype==="multipart/form-data"?{}:{"Content-Type":"application/x-www-form-urlencoded"},body:body})
-      .then(function(r){if(!r.ok)throw 0;f.reset();msg("ok","<b>Thank you. Your message has reached our team.</b><span>"+(f.dataset.ok||"We will review your inquiry and respond as soon as possible.")+"</span>")})
+    var fd=new FormData(f);
+    var done=function(){f.reset();msg("ok","<b>Thank you. Your message has reached our team.</b><span>"+(f.dataset.ok||"We will review your inquiry and respond as soon as possible.")+"</span>")};
+    if(fd.get("company_url")){done();btn.disabled=false;btn.innerHTML=label;return}   /* honeypot: silently accept bots */
+    /* 1) email delivery to web@dymek.com via FormSubmit */
+    var mail=new FormData();
+    fd.forEach(function(v,k){if(k==="form-name"||k==="company_url")return;if(v instanceof File&&!v.name)return;mail.append(k,v)});
+    mail.append("_subject",(f.getAttribute("name")==="careers"?"New job application":"New website enquiry")+" from "+(fd.get("name")||"website visitor"));
+    mail.append("_template","table");mail.append("_captcha","false");
+    if(fd.get("email"))mail.append("_replyto",fd.get("email"));
+    var toMail=fetch("https://formsubmit.co/ajax/"+f.dataset.to,{method:"POST",headers:{Accept:"application/json"},body:mail})
+      .then(function(r){return r.json()}).then(function(j){if(String(j.success)!=="true")throw j;return j});
+    /* 2) backup copy in the Netlify Forms dashboard (best effort) */
+    var nbody=f.enctype==="multipart/form-data"?fd:new URLSearchParams(fd).toString();
+    var toNetlify=fetch("/",{method:"POST",headers:f.enctype==="multipart/form-data"?{}:{"Content-Type":"application/x-www-form-urlencoded"},body:nbody}).catch(function(){return null});
+    Promise.all([toMail,toNetlify]).then(done)
       .catch(function(){msg("bad","<b>We couldn’t send your message.</b><span>Please check your connection and try again, or email <strong>"+f.dataset.to+"</strong>.</span>")})
       .then(function(){btn.disabled=false;btn.innerHTML=label});
   });
