@@ -1557,3 +1557,4 @@ h1 em[data-dim]::after{content:attr(data-dim);position:absolute;right:calc(100% 
 .pd-head h3{font-size:1.0625rem}
 .pd-head .pd-cat{display:block;margin-top:4px;letter-spacing:.06em}
 @media (max-width:600px){.p-hero .jump{justify-self:stretch;max-width:100vw;min-width:0}.p-hero-copy{min-width:0}}
+.lf-cap small.lf-was{display:inline-block;width:max-content;margin:2px 0 3px;padding:1px 8px;border-radius:999px;background:var(--bg-2);color:var(--muted);font-size:.6875rem;font-weight:600;letter-spacing:.01em}
