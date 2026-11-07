@@ -11,7 +11,8 @@ var SUGG=[
   "Which industries and processes do you support?",
   "What is hybrid bonding, in simple terms?",
   "Where is your nearest office to Penang?",
-  "How does a feasibility test with Dymek work?"
+  "How does a feasibility test with Dymek work?",
+  "Help me request a quote"
 ];
 
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
@@ -43,6 +44,27 @@ function md(src){
   flushP();flushL();return out.join("");
 }
 
+
+var QF=[["name","Name"],["company","Company"],["email","Email"],["country","Country"],["phone","Phone"],["need","Needs"],["quantity","Quantity"],["application","Application"],["timeline","Timeline"]];
+function botHTML(el,text,final){
+  var i=text.indexOf("```quote"),main=i<0?text:text.slice(0,i);el.innerHTML=md(main);
+  if(i<0)return;
+  if(!final){var t=d.createElement("p");t.className="dq-wait";t.textContent="Preparing your quote request…";el.appendChild(t);return}
+  var raw=text.slice(i+8).split("```")[0],o;try{o=JSON.parse(raw.trim())}catch(e){return}
+  var box=d.createElement("div");box.className="dq";
+  box.innerHTML="<b>Quote request for Dymek</b><dl>"+QF.filter(function(f){return o[f[0]]}).map(function(f){return"<dt>"+f[1]+"</dt><dd>"+esc(o[f[0]])+"</dd>"}).join("")+"</dl>";
+  var b=d.createElement("button");b.type="button";b.className="btn btn-sm";b.textContent="Send to Dymek";box.appendChild(b);el.appendChild(box);
+  b.addEventListener("click",function(){
+    if(!/@/.test(o.email||"")){b.textContent="Please give Dymo a valid email first";return}
+    b.disabled=true;b.textContent="Sending…";
+    var w=new FormData();w.append("access_key","b6a82774-3c24-4790-bfef-8705a4bdb606");w.append("subject","New quote request (via Dymo) from "+(o.name||"website visitor"));w.append("from_name","Dymek website · Dymo");if(o.email)w.append("replyto",o.email);
+    QF.forEach(function(f){if(o[f[0]])w.append(f[1],o[f[0]])});w.append("Page",location.pathname);
+    var nf=new URLSearchParams();nf.append("form-name","dymo-quote");QF.forEach(function(f){nf.append(f[0],o[f[0]]||"")});
+    var n=fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:nf.toString()}).then(function(r){return r.ok}).catch(function(){return false});
+    var m=fetch("https://api.web3forms.com/submit",{method:"POST",headers:{Accept:"application/json"},body:w}).then(function(r){return r.json()}).then(function(j){return!!j.success}).catch(function(){return false});
+    Promise.all([m,n]).then(function(r){if(r[0]||r[1]){b.remove();var ok=d.createElement("p");ok.className="ok";ok.textContent="Sent. Our team will reply to "+o.email+" soon.";box.appendChild(ok)}else{b.disabled=false;b.textContent="Couldn’t send. Try again"}});
+  });
+}
 function bubble(role,html,cls){var b=d.createElement("div");b.className="msg "+(role==="user"?"me":"bot")+(cls?" "+cls:"");if(role==="user")b.textContent=html;else b.innerHTML=html;log.appendChild(b);log.scrollTop=log.scrollHeight;return b}
 function welcome(){
   var w=bubble("assistant","<p><strong>Hi, I’m Dymo!</strong> I know Dymek’s industries, technologies, partners and offices, and I’m happy to explain the engineering behind them. Ask me anything, in any language.</p>");
@@ -67,7 +89,7 @@ function build(){
   panel.querySelector("[data-dymo-close]").addEventListener("click",close);
   panel.querySelector("[data-dymo-reset]").addEventListener("click",function(){if(busy)return;history=[];save();log.innerHTML="";welcome();ta.focus()});
   welcome();
-  history.forEach(function(m){bubble(m.role,m.role==="user"?m.content:md(m.content))});
+  history.forEach(function(m){if(m.role==="user")bubble("user",m.content);else botHTML(bubble("assistant",""),m.content,true)});
 }
 function open(src){if(!panel)build();opener=src||d.activeElement;panel.hidden=false;var f=d.querySelector(".dymo-fab");if(f)f.hidden=true;log.scrollTop=log.scrollHeight;setTimeout(function(){ta.focus()},30)}
 function close(){if(!panel||panel.hidden)return;panel.hidden=true;var f=d.querySelector(".dymo-fab");if(f)f.hidden=false;if(opener&&opener.focus)opener.focus()}
@@ -77,7 +99,7 @@ function send(text){
   busy=true;sendBtn.disabled=true;ta.value="";ta.style.height="auto";
   bubble("user",text);history.push({role:"user",content:text});save();
   var b=bubble("assistant",'<span class="typing" aria-label="Dymo is typing"><i></i><i></i><i></i></span>'), acc="", raf=0;
-  function paint(){raf=0;b.innerHTML=md(acc);log.scrollTop=log.scrollHeight}
+  function paint(fin){raf=0;botHTML(b,acc,fin===true);log.scrollTop=log.scrollHeight}
   fetch("/api/dymo",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:history.slice(-MAX_TURNS),page:location.pathname.replace(/^\//,"")||"index.html",title:d.title})})
     .then(function(r){
       if(!r.ok||!r.body)return r.text().then(function(t){throw new Error(t||("HTTP "+r.status))});
@@ -87,7 +109,7 @@ function send(text){
     })
     .then(function(){
       if(!acc.trim())throw new Error("empty");
-      paint();history.push({role:"assistant",content:acc});save();
+      if(raf)cancelAnimationFrame(raf);paint(true);history.push({role:"assistant",content:acc});save();
     })
     .catch(function(){
       b.classList.add("err");

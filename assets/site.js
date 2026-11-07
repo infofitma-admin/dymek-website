@@ -167,16 +167,17 @@ $$("form[data-form]").forEach(function(f){
     function msg(cls,html){status.className="form-status notice "+cls;status.innerHTML=html;status.hidden=false;status.scrollIntoView({block:"nearest",behavior:"smooth"})}
     if(!LIVE){
       btn.disabled=false; btn.innerHTML=label;
+      if(f.hasAttribute("data-gate")){f.dispatchEvent(new CustomEvent("dymek:sent",{detail:new FormData(f)}));return}
       msg("info","<b>This preview isn’t connected to an inbox.</b><span>On the live site this form goes straight to our team. For now, please email <strong>"+f.dataset.to+"</strong> with your message.</span>");
       return;
     }
     var fd=new FormData(f);
-    var done=function(){f.reset();msg("ok","<b>Thank you. Your message has reached our team.</b><span>"+(f.dataset.ok||"We will review your inquiry and respond as soon as possible.")+"</span>")};
+    var done=function(){f.dispatchEvent(new CustomEvent("dymek:sent",{detail:fd}));if(f.hasAttribute("data-gate"))return;f.reset();msg("ok","<b>Thank you. Your message has reached our team.</b><span>"+(f.dataset.ok||"We will review your inquiry and respond as soon as possible.")+"</span>")};
     if(fd.get("company_url")){done();btn.disabled=false;btn.innerHTML=label;return}   /* honeypot: silently accept bots */
     /* 1) email delivery to web@dymek.com via FormSubmit */
     var mail=new FormData();
     fd.forEach(function(v,k){if(k==="form-name"||k==="company_url")return;if(v instanceof File&&!v.name)return;mail.append(k,v)});
-    mail.append("_subject",(f.getAttribute("name")==="careers"?"New job application":"New website enquiry")+" from "+(fd.get("name")||"website visitor"));
+    mail.append("_subject",(f.dataset.subject||(f.getAttribute("name")==="careers"?"New job application":"New website enquiry"))+" from "+(fd.get("name")||"website visitor"));
     mail.append("_template","table");mail.append("_captcha","false");
     if(fd.get("email"))mail.append("_replyto",fd.get("email"));
     var W3F_KEY="b6a82774-3c24-4790-bfef-8705a4bdb606";  /* Web3Forms access key for web@dymek.com */
@@ -274,3 +275,110 @@ document.addEventListener('keydown',function(e){if(box.hidden)return;if(e.key===
 function upd(){var r=s.getBoundingClientRect(),vh=innerHeight,k=Math.min(1,Math.max(0,(vh*.85-r.top)/(r.height*.75)));s.style.setProperty('--k',k.toFixed(3));
 marks.forEach(function(m,i){var on=k>=(i*2+1)/12;m.classList.toggle('on',on);if(steps[i])steps[i].classList.toggle('on',on&&k<(i*2+3)/12)})}
 upd();addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd)})();
+
+/* ===== Resources features: quote basket, brochure reader, nearest office, language ===== */
+(function(){
+var d=document,$=function(s,c){return(c||d).querySelector(s)},$$=function(s,c){return[].slice.call((c||d).querySelectorAll(s))};
+function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function put(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+var esc=function(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
+
+/* --- Request-a-quote basket (stored per browser) --- */
+var PR={"evg":["EV Group (EVG)","assets/partners/evg.svg"],"4d":["4D Technology","assets/partners/4d.png"],"3d-micromac":["3D-Micromac","assets/partners/3d-micromac.png"],"isi":["Integral Solutions International (ISI)","assets/partners/isi.png"],"cvd":["CVD Equipment Corporation","assets/partners/cvd.png"],"kla":["KLA (Filmetrics & MicroSense)","assets/partners/filmetrics.png"],"yieldwerx":["yieldWerx","assets/partners/yieldwerx.png"],"opto-alignment":["Opto-Alignment","assets/partners/opto-alignment.png"],"thermofisher":["Thermo Fisher Scientific","assets/partners/thermofisher.png"],"thetametrisis":["ThetaMetrisis","assets/partners/thetametrisis.png"],"beneq":["Beneq","assets/partners/beneq.png"],"sonix":["Sonix","assets/partners/sonix.png"],"nanotronics":["CubeFabs (Nanotronics)","assets/partners/cubefabs.png"]};
+var QK="dymek-rfq";
+function q(){try{return(JSON.parse(get(QK)||"[]")||[]).filter(function(id){return PR[id]})}catch(e){return[]}}
+function setQ(a){put(QK,JSON.stringify(a));render(true)}
+function toggle(id){var a=q(),i=a.indexOf(id);if(i<0)a.push(id);else a.splice(i,1);setQ(a)}
+var pill=null;
+function render(bump){
+  var a=q();
+  if(!/quote\.html$/.test(location.pathname)){
+    if(!pill){pill=d.createElement("a");pill.className="q-pill";pill.href="quote.html";d.body.appendChild(pill)}
+    pill.innerHTML='<i>'+a.length+'</i>Quote list';pill.hidden=!a.length;pill.setAttribute("aria-label","Quote list, "+a.length+" principal"+(a.length===1?"":"s")+" selected");
+    if(bump){pill.classList.remove("pop");void pill.offsetWidth;pill.classList.add("pop")}
+  }
+  $$("[data-q]").forEach(function(b){var on=a.indexOf(b.dataset.q)>-1;b.setAttribute("aria-pressed",String(on));b.innerHTML=on?"✓ In quote list":"+ Add to quote"});
+  var list=$("#q-items");if(list){
+    list.innerHTML=a.length?a.map(function(id){return'<li><img src="'+PR[id][1]+'" alt=""><b>'+esc(PR[id][0])+'</b><button type="button" data-rm="'+id+'">Remove</button></li>'}).join(""):'<li class="q-empty" style="background:none;padding:0">No principals selected yet. Pick from the list below, or simply describe what you need in the form.</li>';
+    var h=$("#q-field");if(h)h.value=a.map(function(id){return PR[id][0]}).join(", ")||"Not specified";
+    $$(".q-pick button").forEach(function(b){b.setAttribute("aria-pressed",String(a.indexOf(b.dataset.pick)>-1))});
+  }
+}
+$$(".pd-tile").forEach(function(t){if(!PR[t.id])return;var b=d.createElement("button");b.type="button";b.className="pd-add";b.dataset.q=t.id;var v=$(".pd-visit",t);t.insertBefore(b,v||null)});
+var pk=$(".q-pick");if(pk)pk.innerHTML=Object.keys(PR).map(function(id){return'<button type="button" data-pick="'+id+'">'+esc(PR[id][0])+'</button>'}).join("");
+d.addEventListener("click",function(e){var t=e.target.closest("[data-q],[data-pick],[data-rm]");if(!t)return;toggle(t.dataset.q||t.dataset.pick||t.dataset.rm)});
+var qf=$("form[name=quote]");if(qf)qf.addEventListener("dymek:sent",function(){setTimeout(function(){setQ([])},50)});
+render(false);
+
+/* --- Brochure reader with a details gate (like FlipLink) --- */
+var gate=$("#gate"),fb=$("#fb");
+if(gate&&fb){
+  var BK="dymek-brochure-ok",cur=null,pages=[],spread=0,busy=false,single=false;
+  var book=$(".fb-book",fb),L=$(".fb-side.l",fb),R=$(".fb-side.r",fb),leaf=$(".fb-leaf",fb),F=$(".f",leaf),B=$(".b",leaf),rng=$("#fb-r",fb),cnt=$("#fb-c",fb),prev=$(".fb-nav.p",fb),next=$(".fb-nav.n",fb);
+  var opener=null;
+  function url(i){return i>=0&&i<pages.length?'url("'+pages[i]+'")':"none"}
+  function setSide(el,i){el.style.backgroundImage=url(i);el.classList.toggle("blank",!(i>=0&&i<pages.length))}
+  function maxS(){return single?pages.length-1:Math.floor(pages.length/2)}
+  function lr(s){return single?[-1,s]:[2*s-1,2*s]}
+  function paint(){var p=lr(spread);setSide(L,p[0]);setSide(R,p[1]);leaf.hidden=true;
+    rng.max=maxS();rng.value=spread;var a=p[0]+1,b=p[1]+1;cnt.textContent=(single?(spread+1):(a>0&&b<=pages.length?a+"–"+b:(a>0?a:b)))+" / "+pages.length;
+    prev.disabled=spread<=0;next.disabled=spread>=maxS()}
+  function go(to,anim){to=Math.max(0,Math.min(maxS(),to));if(to===spread||busy)return;
+    if(single||!anim||Math.abs(to-spread)>1||matchMedia("(prefers-reduced-motion:reduce)").matches){spread=to;paint();return}
+    busy=true;var fwd=to>spread,c=lr(spread),n=lr(to);
+    leaf.className="fb-leaf"+(fwd?"":" back");leaf.hidden=false;
+    if(fwd){setSide(R,n[1]);F.style.backgroundImage=url(c[1]);B.style.backgroundImage=url(n[0])}
+    else{setSide(L,n[0]);B.style.backgroundImage=url(c[0]);F.style.backgroundImage=url(n[1])}
+    void leaf.offsetWidth;leaf.classList.add("turn");
+    var fin=function(){if(!busy)return;busy=false;spread=to;paint()};leaf.addEventListener("transitionend",fin,{once:true});setTimeout(fin,900)}
+  function mode(){var s=innerWidth<820||innerHeight>innerWidth;if(s!==single){var p=lr(spread),first=Math.max(0,p[0]>=0?p[0]:p[1]);single=s;book.classList.toggle("single",s);spread=s?first:Math.floor((first+1)/2)}paint()}
+  function openBook(card){cur=card;var n=+card.dataset.pages,base=card.dataset.base;pages=[];for(var i=1;i<=n;i++)pages.push(base+"p"+(i<10?"0":"")+i+".webp");
+    pages.forEach(function(u,i){if(i<6){var im=new Image();im.src=u}});
+    $(".fb-top b",fb).textContent=card.dataset.title;spread=0;single=null;fb.hidden=false;d.documentElement.style.overflow="hidden";mode();setTimeout(function(){pages.forEach(function(u){var im=new Image();im.src=u})},800);$(".fb-x",fb).focus()}
+  function closeBook(){fb.hidden=true;d.documentElement.style.overflow="";if(opener&&opener.focus)opener.focus()}
+  function openGate(card){cur=card;$("#g-title").value=card.dataset.title;$(".gate-side img",gate).src=card.dataset.cover;$(".gate-side b",gate).textContent=card.dataset.title;gate.hidden=false;d.documentElement.style.overflow="hidden";setTimeout(function(){$("input:not([type=hidden]):not([tabindex])",gate).focus()},30)}
+  function closeGate(){gate.hidden=true;d.documentElement.style.overflow=""}
+  $$("[data-brochure]").forEach(function(b){b.addEventListener("click",function(e){e.preventDefault();opener=b;var card=$(b.dataset.brochure);if(get(BK))openBook(card);else openGate(card)})});
+  $("form",gate).addEventListener("dymek:sent",function(){put(BK,"1");closeGate();setTimeout(function(){openBook(cur)},120)});
+  $$("[data-gate-close]",gate).forEach(function(b){b.addEventListener("click",closeGate)});
+  gate.addEventListener("click",function(e){if(e.target===gate)closeGate()});
+  $(".fb-x",fb).addEventListener("click",closeBook);
+  prev.addEventListener("click",function(){go(spread-1,true)});next.addEventListener("click",function(){go(spread+1,true)});
+  rng.addEventListener("input",function(){go(+rng.value,false)});
+  L.addEventListener("click",function(){go(spread-1,true)});R.addEventListener("click",function(){go(spread+1,true)});
+  d.addEventListener("keydown",function(e){if(!fb.hidden){if(e.key==="ArrowRight")go(spread+1,true);else if(e.key==="ArrowLeft")go(spread-1,true);else if(e.key==="Escape")closeBook()}else if(!gate.hidden&&e.key==="Escape")closeGate()});
+  var sx=null;$(".fb-stage",fb).addEventListener("touchstart",function(e){sx=e.touches[0].clientX},{passive:true});
+  $(".fb-stage",fb).addEventListener("touchend",function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)go(spread+(dx<0?1:-1),true);sx=null});
+  addEventListener("resize",function(){if(!fb.hidden)mode()});
+}
+
+/* --- Nearest office from the visitor's location --- */
+var nb=$("[data-near]");
+if(nb){
+  var OF={"hong-kong":[22.371,114.113,"Hong Kong"],"beijing":[39.735,116.143,"Beijing"],"shanghai":[31.255,121.625,"Shanghai"],"dongguan":[23.003,113.752,"Dongguan"],"hsinchu":[24.808,121.012,"Hsinchu"],"penang":[5.33,100.28,"Penang"],"singapore":[1.375,103.85,"Singapore"],"pathum-thani":[14.07,100.6,"Pathum Thani"],"hanoi":[20.99,105.84,"Hanoi"],"manila-muntinlupa":[14.42,121.04,"Muntinlupa (Manila)"]};
+  var nm=$(".near-msg");
+  function km(a,b,c,e){var r=Math.PI/180,x=Math.sin((c-a)*r/2),y=Math.sin((e-b)*r/2),h=x*x+Math.cos(a*r)*Math.cos(c*r)*y*y;return 12742*Math.asin(Math.sqrt(h))}
+  nb.addEventListener("click",function(){
+    if(!navigator.geolocation){nm.hidden=false;nm.textContent="Your browser can’t share a location. Please pick an office from the map.";return}
+    nb.disabled=true;nm.hidden=false;nm.textContent="Finding your nearest office…";
+    navigator.geolocation.getCurrentPosition(function(p){
+      var best=null,bd=1e9;Object.keys(OF).forEach(function(id){var o=OF[id],k=km(p.coords.latitude,p.coords.longitude,o[0],o[1]);if(k<bd){bd=k;best=id}});
+      $$(".office.near").forEach(function(o){o.classList.remove("near")});
+      var mk=$('.d-marker[data-id="'+best+'"]'),card=$('.office[data-id="'+best+'"]');if(mk)mk.click();if(card){card.classList.add("near");card.scrollIntoView({block:"center",behavior:"smooth"})}
+      nm.textContent="Your nearest office is "+OF[best][2]+", about "+(bd<10?"under 10":Math.round(bd/10)*10)+" km away.";nb.disabled=false;
+    },function(){nm.textContent="We couldn’t get your location. Please allow location access, or pick an office from the map.";nb.disabled=false},{timeout:10000,maximumAge:600000});
+  });
+}
+
+/* --- Language switch: English / Simplified Chinese (Google Translate) --- */
+function ck(){var m=d.cookie.match(/(?:^|;\s*)googtrans=([^;]+)/);return m?decodeURIComponent(m[1]):""}
+var zh=/zh-CN/.test(ck());
+$$(".lang button").forEach(function(b){b.setAttribute("aria-pressed",String((b.dataset.lang==="zh-CN")===zh));
+  b.addEventListener("click",function(){var want=b.dataset.lang;if((want==="zh-CN")===zh)return;var h=location.hostname,parts=h.split("."),dom=parts.length>1?"."+parts.slice(-2).join("."):"";
+    if(want==="zh-CN"){d.cookie="googtrans=/en/zh-CN;path=/";if(dom)d.cookie="googtrans=/en/zh-CN;path=/;domain="+dom}
+    else{var ex=";expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";d.cookie="googtrans="+ex;d.cookie="googtrans="+ex+";domain="+h;if(dom)d.cookie="googtrans="+ex+";domain="+dom}
+    location.reload()})});
+if(zh){d.documentElement.lang="zh-CN";var g=d.createElement("div");g.id="google_translate_element";d.body.appendChild(g);
+  window.googleTranslateElementInit=function(){new google.translate.TranslateElement({pageLanguage:"en",includedLanguages:"en,zh-CN",autoDisplay:false},"google_translate_element")};
+  var sc=d.createElement("script");sc.src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";sc.async=true;d.head.appendChild(sc)}
+})();
