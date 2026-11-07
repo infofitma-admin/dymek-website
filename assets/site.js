@@ -179,12 +179,15 @@ $$("form[data-form]").forEach(function(f){
     mail.append("_subject",(f.getAttribute("name")==="careers"?"New job application":"New website enquiry")+" from "+(fd.get("name")||"website visitor"));
     mail.append("_template","table");mail.append("_captcha","false");
     if(fd.get("email"))mail.append("_replyto",fd.get("email"));
-    var toMail=fetch("https://formsubmit.co/ajax/"+f.dataset.to,{method:"POST",headers:{Accept:"application/json"},body:mail})
-      .then(function(r){return r.json()}).then(function(j){if(String(j.success)!=="true")throw j;return j});
+    function sendMail(n){return fetch("https://formsubmit.co/ajax/"+f.dataset.to,{method:"POST",headers:{Accept:"application/json"},body:mail})
+      .then(function(r){return r.json()}).then(function(j){if(String(j.success)!=="true")throw j;return true})
+      .catch(function(e){if(n>0)return new Promise(function(res){setTimeout(res,n===2?1500:4000)}).then(function(){return sendMail(n-1)});return false})}
+    var toMail=sendMail(2);
     /* 2) backup copy in the Netlify Forms dashboard (best effort) */
     var nbody=f.enctype==="multipart/form-data"?fd:new URLSearchParams(fd).toString();
-    var toNetlify=fetch("/",{method:"POST",headers:f.enctype==="multipart/form-data"?{}:{"Content-Type":"application/x-www-form-urlencoded"},body:nbody}).catch(function(){return null});
-    Promise.all([toMail,toNetlify]).then(done)
+    var toNetlify=fetch("/",{method:"POST",headers:f.enctype==="multipart/form-data"?{}:{"Content-Type":"application/x-www-form-urlencoded"},body:nbody}).then(function(r){return r.ok}).catch(function(){return false});
+    /* success when either channel has the submission: email (web@dymek.com) or the Netlify Forms inbox */
+    Promise.all([toMail,toNetlify]).then(function(r){if(!r[0]&&!r[1])throw 0;done()})
       .catch(function(){msg("bad","<b>We couldn’t send your message.</b><span>Please check your connection and try again, or email <strong>"+f.dataset.to+"</strong>.</span>")})
       .then(function(){btn.disabled=false;btn.innerHTML=label});
   });

@@ -1483,3 +1483,19 @@ h1 em[data-dim]::after{content:attr(data-dim);position:absolute;right:calc(100% 
   .p-hero .jump::-webkit-scrollbar{display:none}
   .p-hero .jump a{white-space:nowrap;flex:none}
 }
+/* Footer: long "More industries" list flows into two columns */
+@media (min-width:1181px){
+  .foot-cols{grid-template-columns:1.25fr 1fr 1fr 1.7fr .95fr .8fr}
+  .foot-cols>div:nth-child(4) ul{display:block;columns:2;column-gap:var(--s-5)}
+  .foot-cols>div:nth-child(4) li{break-inside:avoid;margin-bottom:var(--s-2)}
+}
+@media (max-width:600px){.foot-cols>div:nth-child(4) ul{display:block;columns:1}}
+/* Advanced packaging: layers line up (no growing indent) */
+.slab{margin-left:0!important}
+/* Automotive: numbered steps use a compact badge instead of a big empty tile */
+@media (min-width:861px){
+  .zig:has(>.zp:not(.art)){grid-template-columns:112px minmax(0,1fr);gap:var(--s-6);align-items:start;max-width:980px;margin-inline:auto;border-top:1px solid var(--line-2)}
+  .zig>.zp:not(.art){order:0!important;aspect-ratio:1;width:112px;font-size:2.75rem;border-radius:24px}
+  .zig>.zp:not(.art)::after{width:70px;height:70px;right:-22px;bottom:-22px;border-radius:18px}
+}
+@media (max-width:860px){.zig>.zp:not(.art){width:72px;height:72px;aspect-ratio:1;padding:0;justify-items:center;font-size:1.75rem;border-radius:18px}}
