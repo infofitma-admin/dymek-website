@@ -1059,3 +1059,48 @@ p { font-size: 1rem; }
 @media (min-width: 1024px) { .d2 { max-width: 46ch; } }
 @media (min-width: 1280px) and (max-width: 1439px) { .problem-cards-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (min-width: 1024px) { .sechead { max-width: 1000px; } }
+
+/* ===== UI/UX polish (Nov 2026): alignment & spacing ===== */
+/* Consultation checklist: icon sits level with its text */
+.sr-item { align-items: center; padding: 1rem 1.1rem; gap: .9rem; }
+.sr-item h3 { margin: 0 0 .2rem; }
+/* FAQ: one centred column so an open answer never leaves a gap beside it */
+@media (min-width: 900px) { .faq-list { max-width: 860px; grid-template-columns: 1fr; } }
+
+@media (max-width: 640px) {
+  /* Red CTA band: centred stack */
+  .cta-band__in { text-align: center; justify-items: center; }
+  .cta-band__text { flex-direction: column; align-items: center; gap: 1rem; }
+  .cta-band__points { justify-content: center; }
+  .cta-band__actions { width: 100%; }
+
+  /* Consultation card: centred heading block, roomier cards */
+  .start-routes-inspo { padding: 1.75rem 1.1rem; gap: 1.5rem; }
+  .start-routes__left { text-align: center; }
+  .start-routes__left .badge-tag { margin-inline: auto; }
+
+  /* Industries: drop the extra framed box so tiles use the full width */
+  .industries { background: none; border: 0; padding: 0; border-radius: 0; }
+
+  /* Closing card: centred content, buttons full width */
+  .close-card__content { text-align: center; padding: 2.25rem 1.35rem; }
+  .close-card .badge-tag { margin-inline: auto; }
+  .close-card__points { width: fit-content; max-width: 100%; margin-inline: auto; text-align: left; }
+  .close-card__actions .btn { justify-content: center; text-align: center; }
+
+  /* Enquiry form card: a little less inner padding */
+  .formwrap { padding: 1.35rem 1.1rem; }
+
+  /* Footer: Navigation and Solutions side by side */
+  .foot__grid { grid-template-columns: 1fr 1fr; gap: 2rem 1.25rem; }
+  .foot__grid > .foot__about, .foot__grid > :last-child { grid-column: 1 / -1; }
+}
+/* Left-aligned headings must not be auto-centred as a block (caused an indent) */
+.regional-coord__content .d2, .start-routes__left .d2 { margin-inline: 0; }
+@media (max-width: 859px) {
+  .start-routes__left { text-align: center; }
+  .start-routes__left .badge-tag, .start-routes__left .d2 { margin-inline: auto; }
+}
+/* Industries: no lonely last tile on tablets */
+@media (min-width: 641px) and (max-width: 899px) { .ind-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 900px) and (max-width: 1100px) { .ind-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
