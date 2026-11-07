@@ -261,8 +261,8 @@ $$("[data-year]").forEach(function(s){s.textContent=new Date().getFullYear()});
 function run(){var t=(q.value||"").trim().toLowerCase(),c=0;tiles.forEach(function(el){var ok=(cur==="all"||el.dataset.cat===cur)&&(!t||el.dataset.name.indexOf(t)>-1||el.textContent.toLowerCase().indexOf(t)>-1);el.hidden=!ok;if(ok)c++});n.textContent=c;em.hidden=c>0}
 fs.forEach(function(b){b.addEventListener("click",function(){fs.forEach(function(x){x.classList.toggle("on",x===b);x.setAttribute("aria-pressed",x===b)});cur=b.dataset.f;run()})});q.addEventListener("input",run)})();
 /* About: memories lightbox */
-(function(){var box=document.querySelector('.mm-box');if(!box)return;var btns=[].slice.call(document.querySelectorAll('.mm-open')),img=box.querySelector('img'),cap=box.querySelector('figcaption'),cur=0,last=null;
-function show(i){cur=(i+btns.length)%btns.length;var b=btns[cur],im=b.querySelector('img');img.src=im.src;img.alt=im.alt;cap.textContent=b.parentNode.querySelector('figcaption').textContent}
+(function(){var box=document.querySelector('.mm-box');if(!box)return;var btns=[].slice.call(document.querySelectorAll('.mm-open')),img=box.querySelector('img'),cur=0,last=null;
+function show(i){cur=(i+btns.length)%btns.length;var b=btns[cur],im=b.querySelector('img');img.src=im.src;img.alt=im.alt}
 function open(i){last=document.activeElement;show(i);box.hidden=false;document.body.style.overflow='hidden';box.querySelector('.mm-x').focus()}
 function close(){box.hidden=true;document.body.style.overflow='';if(last)last.focus()}
 btns.forEach(function(b,i){b.addEventListener('click',function(){open(i)})});
