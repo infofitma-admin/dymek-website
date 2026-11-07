@@ -179,12 +179,22 @@ $$("form[data-form]").forEach(function(f){
     mail.append("_subject",(f.getAttribute("name")==="careers"?"New job application":"New website enquiry")+" from "+(fd.get("name")||"website visitor"));
     mail.append("_template","table");mail.append("_captcha","false");
     if(fd.get("email"))mail.append("_replyto",fd.get("email"));
+    var W3F_KEY="";  /* Web3Forms access key for web@dymek.com */
+    if(W3F_KEY){
+      var w=new FormData(); mail.forEach(function(v,k){if(k.charAt(0)!=="_"&&!(v instanceof File))w.append(k,v)});
+      w.append("access_key",W3F_KEY); w.append("subject",mail.get("_subject")); w.append("from_name","Dymek website");
+      if(fd.get("email"))w.append("replyto",fd.get("email"));
+      var cv=fd.get("cv"); if(cv&&cv.name)w.append("cv_file","Attached CV ("+cv.name+") is saved in Netlify > dymek-site > Forms > careers");
+    }
+    function sendW3F(n){return fetch("https://api.web3forms.com/submit",{method:"POST",headers:{Accept:"application/json"},body:w})
+      .then(function(r){return r.json()}).then(function(j){if(!j.success)throw j;return true})
+      .catch(function(){if(n>0)return new Promise(function(res){setTimeout(res,1500)}).then(function(){return sendW3F(n-1)});return false})}
     function sendMail(n){var ac=window.AbortController?new AbortController():null;var t=ac&&setTimeout(function(){ac.abort()},9000);
       return fetch("https://formsubmit.co/ajax/"+f.dataset.to,{method:"POST",headers:{Accept:"application/json"},body:mail,signal:ac?ac.signal:undefined})
       .then(function(r){clearTimeout(t);return r})
       .then(function(r){return r.json()}).then(function(j){if(String(j.success)!=="true")throw j;return true})
       .catch(function(e){if(n>0)return new Promise(function(res){setTimeout(res,n===2?1200:2500)}).then(function(){return sendMail(n-1)});return false})}
-    var toMail=sendMail(2);
+    var toMail=W3F_KEY?sendW3F(2):sendMail(2);
     /* 2) backup copy in the Netlify Forms dashboard (best effort) */
     var nbody=f.enctype==="multipart/form-data"?fd:new URLSearchParams(fd).toString();
     var toNetlify=fetch("/",{method:"POST",headers:f.enctype==="multipart/form-data"?{}:{"Content-Type":"application/x-www-form-urlencoded"},body:nbody}).then(function(r){return r.ok}).catch(function(){return false});
