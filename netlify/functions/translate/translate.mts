@@ -31,12 +31,12 @@ Rules:
 Return ONLY a JSON array of strings, the same length and order as the input.`
 
 async function translate(lang: string, texts: string[]): Promise<string[]> {
-  const msg = await anthropic.messages.create({
+  const msg = await anthropic.messages.stream({
     model: MODEL,
     max_tokens: 8000,
     system: [{ type: 'text', text: RULES }, { type: 'text', text: 'Target: ' + LOCALES[lang] }],
     messages: [{ role: 'user', content: JSON.stringify(texts) }],
-  })
+  }).finalMessage()
   const raw = msg.content.map((b) => (b.type === 'text' ? b.text : '')).join('').trim()
   const json = raw.slice(raw.indexOf('['), raw.lastIndexOf(']') + 1)
   const out = JSON.parse(json)
@@ -70,7 +70,8 @@ export default async (req: Request) => {
       await Promise.all(missing.map((i, j) => { result[i] = done[j]; return store.set(keys[i], done[j]).catch(() => {}) }))
     } catch (err) {
       console.error('translate error', err)
-      return Response.json({ t: result, partial: true }, { status: 200 })
+      const e = err as { status?: number; message?: string }
+      return Response.json({ t: result, partial: true, err: String(e?.status || '') + ' ' + String(e?.message || '').slice(0, 160) }, { status: 200 })
     }
   }
   return Response.json({ t: result }, { headers: { 'Cache-Control': 'no-store' } })
