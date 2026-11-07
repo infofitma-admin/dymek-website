@@ -2265,3 +2265,46 @@ font[style*="background-color"]{background:none!important;box-shadow:none!import
 .lang-btn{gap:7px!important;padding:5px 12px!important}.lang-btn svg{flex:none}
 @media (max-width:980px){.tl-card.feat{flex-direction:column}.tl-card.feat .tl-shot{padding:18px 18px 0}.tl-card.feat .tl-shot img{border-radius:12px 12px 0 0}}
 @media (min-width:700px) and (max-width:860px){.evc-grid{grid-template-columns:1fr 1fr}.evc-body{padding:var(--s-5)}}
+/* calendar popup */
+.cal-pop{position:absolute;z-index:400;width:270px;background:#fff;border-radius:16px;padding:10px;box-shadow:0 0 0 1px rgba(16,24,10,.08),0 24px 50px -16px rgba(16,24,10,.45);display:grid;gap:2px;animation:calIn .16s ease}
+@keyframes calIn{from{opacity:0;transform:translateY(-4px)}}
+.cal-h{display:flex;align-items:center;justify-content:space-between;padding:4px 6px 0 10px}
+.cal-h b{font-family:var(--f-head);color:var(--forest);font-size:.9375rem}
+.cal-x{all:unset;cursor:pointer;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:1.25rem;color:var(--muted)}
+.cal-x:hover{background:var(--bg-2)}
+.cal-t{margin:0 10px 6px;font-size:.8125rem;color:var(--muted)}
+.cal-pop a,.cal-ics{all:unset;box-sizing:border-box;cursor:pointer;display:block;padding:10px 12px;border-radius:10px;font-family:var(--f-head);font-weight:600;font-size:.9rem;color:var(--forest)}
+.cal-pop a:hover,.cal-ics:hover,.cal-pop a:focus-visible,.cal-ics:focus-visible{background:var(--sage)}
+/* language button alignment */
+.lang-btn{display:inline-flex!important;align-items:center!important;line-height:1!important;height:26px;box-sizing:border-box}
+.lang-btn svg{display:block!important;margin:0!important;vertical-align:middle;flex:none}
+.lang-btn span{display:block;line-height:1;margin:0}
+/* event hero two columns */
+.ev-hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:var(--s-8);align-items:end;padding-block:var(--s-8)}
+.ev-hero-grid .ev-hero-in{padding:0;max-width:none}
+.ev-hero-grid .ev-hero-in>*{max-width:620px}
+.ev-card{background:rgba(255,255,255,.1);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-lg);padding:var(--s-5);display:grid;gap:var(--s-4);color:#fff}
+.ev-card-h{font-family:var(--f-head);font-weight:800;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--lime)}
+.ev-card .ev-count span{flex:1;background:rgba(255,255,255,.1)}
+.ev-dl{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.ev-dl li{display:flex;gap:12px;align-items:flex-start}
+.ev-dl svg{flex:none;width:18px;height:18px;margin-top:2px;color:var(--lime)}
+.ev-dl b{display:block;font-family:var(--f-head);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#C9DBB4;margin-bottom:2px}
+.ev-dl span{font-family:var(--f-head);font-weight:700;font-size:.9375rem}
+.ev-card-btn{justify-content:center;width:100%}
+@media (max-width:960px){.ev-hero-grid{grid-template-columns:1fr;gap:var(--s-6)}}
+/* featured tool card image centred */
+.tl-card.feat .tl-shot{align-items:center!important;justify-content:center;padding:28px!important}
+.tl-card.feat .tl-shot img{width:100%;height:auto!important;aspect-ratio:16/10;border-radius:12px!important;box-shadow:0 20px 40px -18px rgba(0,0,0,.6)}
+.ev-hero>.wrap{width:100%}
+/* translated pages: keep the header on one line */
+.nav-a,.head-tools .btn,.ask-btn span{white-space:nowrap}
+html:not([lang="en"]) .search-pill span,html:not([lang="en"]) .search-pill kbd{display:none}
+html:not([lang="en"]) .search-pill{width:44px;padding:0;justify-content:center;min-width:0}
+html:not([lang="en"]) .nav-a{padding:0 8px;font-size:.875rem}
+html:not([lang="en"]) .ask-btn span{display:none}
+html:not([lang="en"]) .ask-btn{padding:0 12px}
+@media (max-width:1340px){html:not([lang="en"]) .site-head nav,html:not([lang="en"]) .head-tools>.btn:not(.ask-btn){display:none}html:not([lang="en"]) .menu-btn{display:inline-grid}}
+.i18n-wait body{opacity:0;animation:i18nShow 0s linear 1.5s forwards}
+@keyframes i18nShow{to{opacity:1}}
+.i18n-busy main,.i18n-busy .site-head,.i18n-busy .site-foot{opacity:.35;transition:opacity .15s}
