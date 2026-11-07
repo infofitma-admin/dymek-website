@@ -30,6 +30,20 @@ Rules:
 - If a string should not be translated (a code, a name, a number), return it unchanged.
 Return ONLY a JSON array of strings, the same length and order as the input.`
 
+function parseArray(raw: string): unknown[] {
+  const start = raw.indexOf('[')
+  if (start < 0) throw new Error('no array')
+  let depth = 0, inStr = false, esc = false
+  for (let i = start; i < raw.length; i++) {
+    const c = raw[i]
+    if (inStr) { if (esc) esc = false; else if (c === '\\') esc = true; else if (c === '"') inStr = false; continue }
+    if (c === '"') inStr = true
+    else if (c === '[') depth++
+    else if (c === ']' && --depth === 0) return JSON.parse(raw.slice(start, i + 1))
+  }
+  throw new Error('unterminated array')
+}
+
 async function translate(lang: string, texts: string[]): Promise<string[]> {
   const msg = await anthropic.messages.stream({
     model: MODEL,
@@ -38,8 +52,7 @@ async function translate(lang: string, texts: string[]): Promise<string[]> {
     messages: [{ role: 'user', content: JSON.stringify(texts) }],
   }).finalMessage()
   const raw = msg.content.map((b) => (b.type === 'text' ? b.text : '')).join('').trim()
-  const json = raw.slice(raw.indexOf('['), raw.lastIndexOf(']') + 1)
-  const out = JSON.parse(json)
+  const out = parseArray(raw)
   if (!Array.isArray(out) || out.length !== texts.length) throw new Error('length mismatch')
   return out.map((s: unknown, i: number) => (typeof s === 'string' && s.trim() ? s : texts[i]))
 }
