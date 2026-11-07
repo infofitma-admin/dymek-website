@@ -260,3 +260,12 @@ $$("[data-year]").forEach(function(s){s.textContent=new Date().getFullYear()});
 (function(){var g=document.getElementById("pd-grid");if(!g)return;var q=document.getElementById("pd-q"),n=document.getElementById("pd-n"),em=document.getElementById("pd-empty"),fs=[].slice.call(document.querySelectorAll(".pd-f")),tiles=[].slice.call(g.querySelectorAll(".pd-tile")),cur="all";
 function run(){var t=(q.value||"").trim().toLowerCase(),c=0;tiles.forEach(function(el){var ok=(cur==="all"||el.dataset.cat===cur)&&(!t||el.dataset.name.indexOf(t)>-1||el.textContent.toLowerCase().indexOf(t)>-1);el.hidden=!ok;if(ok)c++});n.textContent=c;em.hidden=c>0}
 fs.forEach(function(b){b.addEventListener("click",function(){fs.forEach(function(x){x.classList.toggle("on",x===b);x.setAttribute("aria-pressed",x===b)});cur=b.dataset.f;run()})});q.addEventListener("input",run)})();
+/* About: memories lightbox */
+(function(){var box=document.querySelector('.mm-box');if(!box)return;var btns=[].slice.call(document.querySelectorAll('.mm-open')),img=box.querySelector('img'),cap=box.querySelector('figcaption'),cur=0,last=null;
+function show(i){cur=(i+btns.length)%btns.length;var b=btns[cur],im=b.querySelector('img');img.src=im.src;img.alt=im.alt;cap.textContent=b.parentNode.querySelector('figcaption').textContent}
+function open(i){last=document.activeElement;show(i);box.hidden=false;document.body.style.overflow='hidden';box.querySelector('.mm-x').focus()}
+function close(){box.hidden=true;document.body.style.overflow='';if(last)last.focus()}
+btns.forEach(function(b,i){b.addEventListener('click',function(){open(i)})});
+box.querySelector('.mm-x').addEventListener('click',close);box.querySelector('.mm-prev').addEventListener('click',function(){show(cur-1)});box.querySelector('.mm-next').addEventListener('click',function(){show(cur+1)});
+box.addEventListener('click',function(e){if(e.target===box)close()});
+document.addEventListener('keydown',function(e){if(box.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1)});})();
