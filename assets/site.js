@@ -372,7 +372,7 @@ if(nb){
 
 /* --- Language menu: AI localisation (pre-translated dictionaries + cached API fallback) --- */
 var LANGS=[["en","English","EN"],["zh-CN","简体中文","简"],["zh-TW","繁體中文","繁"],["th","ไทย","TH"],["ms","Bahasa Melayu","MS"],["vi","Tiếng Việt","VI"],["id","Bahasa Indonesia","ID"],["ja","日本語","JA"],["ko","한국어","KO"]];
-var I18NV="1";
+var I18NV="2";
 var cur=get("dymek-lang")||"en";if(!LANGS.some(function(l){return l[0]===cur}))cur="en";
 if(/googtrans=/.test(d.cookie)){var ex=";expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";d.cookie="googtrans="+ex;d.cookie="googtrans="+ex+";domain="+location.hostname;d.cookie="googtrans="+ex+";domain=."+location.hostname.split(".").slice(-2).join(".")}
 var SKIP="script,style,noscript,code,pre,svg,.notranslate,.dymo,.lang,.cal-pop,[translate=no]";
