@@ -412,8 +412,8 @@ function load(l,cb){var c={};try{c=JSON.parse(get("dymek-i18n-"+l)||"{}")||{}}ca
   var fresh=get("dymek-i18n-v-"+l)===I18NV&&Object.keys(c).length>500;
   if(fresh){cb(c);return}
   fetch("/api/i18n?lang="+l+"&v="+I18NV).then(function(r){return r.ok?r.json():{}}).catch(function(){return{}}).then(function(j){for(var k in j)if(!c[k])c[k]=j[k];if(Object.keys(j).length){put("dymek-i18n-"+l,JSON.stringify(c));put("dymek-i18n-v-"+l,I18NV)}cb(c)})}
-/* warm the dictionary when the visitor opens the language menu */
-$$(".lang-btn").forEach(function(b){b.addEventListener("click",function(){if(b.__warm)return;b.__warm=1;setTimeout(function(){LANGS.slice(1).forEach(function(l){if(get("dymek-i18n-v-"+l[0])!==I18NV)fetch("/api/i18n?lang="+l[0]+"&v="+I18NV).catch(function(){})})},50)})});
+/* warm a language's dictionary as soon as the pointer or finger reaches it */
+$$(".lang-menu [data-lang]").forEach(function(o){var w=function(){var l=o.dataset.lang;if(l==="en"||o.__w||get("dymek-i18n-v-"+l)===I18NV)return;o.__w=1;fetch("/api/i18n?lang="+l+"&v="+I18NV).catch(function(){})};o.addEventListener("pointerenter",w);o.addEventListener("touchstart",w,{passive:true});o.addEventListener("focus",w)});
 function setLang(l){if(l===cur)return;restore();cur=l;put("dymek-lang",l);d.documentElement.lang=l==="en"?"en":l;paintMenus();
   if(l==="en"){toast.hidden=true;return}
   d.documentElement.classList.add("i18n-busy");load(l,function(c){if(cur!==l)return;dict=c;apply();d.documentElement.classList.remove("i18n-busy")})}
