@@ -409,7 +409,11 @@ function apply(){pend={};queue=[];total=0;doneN=0;
   d.documentElement.classList.remove("i18n-wait");
   if(!obs){obs=new MutationObserver(function(ms){if(cur==="en")return;ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===1&&!n.closest(SKIP))scan(n);else if(n.nodeType===3&&n.parentElement&&!n.parentElement.closest(SKIP))scan(n.parentElement)})})});obs.observe(d.body,{childList:true,subtree:true})}}
 function load(l,cb){var c={};try{c=JSON.parse(get("dymek-i18n-"+l)||"{}")||{}}catch(e){}
-  fetch("/api/i18n?lang="+l+"&v="+I18NV).then(function(r){return r.ok?r.json():{}}).catch(function(){return{}}).then(function(j){for(var k in j)if(!c[k])c[k]=j[k];cb(c)})}
+  var fresh=get("dymek-i18n-v-"+l)===I18NV&&Object.keys(c).length>500;
+  if(fresh){cb(c);return}
+  fetch("/api/i18n?lang="+l+"&v="+I18NV).then(function(r){return r.ok?r.json():{}}).catch(function(){return{}}).then(function(j){for(var k in j)if(!c[k])c[k]=j[k];if(Object.keys(j).length){put("dymek-i18n-"+l,JSON.stringify(c));put("dymek-i18n-v-"+l,I18NV)}cb(c)})}
+/* warm the dictionary when the visitor opens the language menu */
+$$(".lang-btn").forEach(function(b){b.addEventListener("click",function(){if(b.__warm)return;b.__warm=1;setTimeout(function(){LANGS.slice(1).forEach(function(l){if(get("dymek-i18n-v-"+l[0])!==I18NV)fetch("/api/i18n?lang="+l[0]+"&v="+I18NV).catch(function(){})})},50)})});
 function setLang(l){if(l===cur)return;restore();cur=l;put("dymek-lang",l);d.documentElement.lang=l==="en"?"en":l;paintMenus();
   if(l==="en"){toast.hidden=true;return}
   d.documentElement.classList.add("i18n-busy");load(l,function(c){if(cur!==l)return;dict=c;apply();d.documentElement.classList.remove("i18n-busy")})}
