@@ -2308,3 +2308,27 @@ html:not([lang="en"]) .ask-btn{padding:0 12px}
 .i18n-wait body{opacity:0;animation:i18nShow 0s linear 1.5s forwards}
 @keyframes i18nShow{to{opacity:1}}
 .i18n-busy main,.i18n-busy .site-head,.i18n-busy .site-foot{opacity:.35;transition:opacity .15s}
+/* Principal directory v2 (Nov 11): wordmark tiles, industry select, JV note */
+.pd-wm{background:linear-gradient(135deg,#f3f7ee,#e7efdc)}
+.pd-wm span{font-family:var(--f-head);font-weight:800;font-size:1.125rem;line-height:1.2;letter-spacing:-.01em;color:var(--forest);text-align:center;overflow-wrap:anywhere}
+.pd-h-wm{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pd-sel{position:relative;flex:0 1 300px;min-width:0}
+.pd-sel select{width:100%;appearance:none;-webkit-appearance:none;font:inherit;font-size:.9375rem;font-weight:600;color:var(--dark);min-height:44px;padding:0 2.4rem 0 1rem;border:1px solid var(--line-2);border-radius:999px;background:#fff;cursor:pointer;text-overflow:ellipsis}
+.pd-sel::after{content:"";position:absolute;right:1rem;top:50%;width:8px;height:8px;border-right:2px solid var(--forest);border-bottom:2px solid var(--forest);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.pd-sel select:focus-visible{outline:2px solid var(--forest);outline-offset:2px}
+.pd-note{font-size:.8125rem;line-height:1.5;color:var(--forest);background:var(--bg-2,#f2f5ef);border-radius:10px;padding:.55rem .75rem}
+.q-wm{width:64px;height:36px;flex:none;display:grid;place-items:center;background:#fff;border-radius:8px;font-family:var(--f-head);font-weight:800;color:var(--forest)}
+@media (max-width:640px){.pd-sel{flex:1 1 100%}}
+.pd-wm-t{display:contents}
+.pd-chips a{border-radius:10px}
+@media (max-width:640px){
+.pd-grid{gap:12px}
+.pd-tile{padding:16px;gap:.45rem}
+.pd-logo{height:64px;padding:8px 14px}
+.pd-logo img{max-height:40px}
+.pd-wm span{font-size:1rem}
+.pd-chips{display:none}
+.pd-tile .pd-add{margin-top:4px}
+.pd-visit{padding-top:.4rem}
+}
+.job details p b{display:inline;margin:0}
