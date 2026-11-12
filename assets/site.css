@@ -2333,3 +2333,4 @@ html:not([lang="en"]) .ask-btn{padding:0 12px}
 }
 .job details p b{display:inline;margin:0}
 .pd-logo-dk{background:#1d2b22}
+.pd-chips span{font-size:.75rem;padding:.25rem .6rem;border-radius:10px;background:var(--bg-2,#f2f5ef);color:var(--dark);border:1px solid var(--line)}
