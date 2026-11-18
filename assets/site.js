@@ -421,7 +421,7 @@ if(cur!=="en"){d.documentElement.lang=cur;load(cur,function(c){dict=c;apply()})}
 })();
 
 /* events: countdown + "meet us there" prefill */
-(function(){var d=document,c=d.querySelector("[data-count]");
+(function(){var d=document,c=d.querySelector(".ev-count[data-count]");
 if(c){var t=new Date(c.dataset.count+"T09:00:00+09:00"),f=function(){var s=Math.max(0,(t-Date.now())/1000),D=Math.floor(s/86400),H=Math.floor(s%86400/3600),M=Math.floor(s%3600/60);c.innerHTML=s?"<span><b>"+D+"</b>days</span><span><b>"+H+"</b>hours</span><span><b>"+M+"</b>minutes</span>":"<span><b>Now</b>on</span>"};f();setInterval(f,30000)}
 d.addEventListener("click",function(e){var a=e.target.closest("[data-meet]");if(!a)return;var s=d.getElementById("e-show");if(s){s.value=a.dataset.meet;var fl=s.closest(".field");if(fl)fl.classList.remove("invalid")}});})();
 
